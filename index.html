@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Faugei - Always Fresh Flowers</title>
+    <!--  ################## add custom google font ################## -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <!-- ############# end custom google font ################## -->
+    <!--  ##################ADD Tailwind CSS via CDN  ################## -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- ADD ################## Tailwind CSS via CDN ################## -->
+
     <link rel="stylesheet" href="./style.css" />
     <style type="text/tailwindcss">
       :root {
@@ -22,6 +27,9 @@
       .font-inter {
         font-family: "Inter", sans-serif;
       }
+      .font-noto {
+        font-family: "Noto Serif", serif;
+      }
     </style>
   </head>
   <body
@@ -31,7 +39,7 @@
       <header class="flex justify-between items-center">
         <div class="logo"><img src="/assets/logo.png" alt="Faugei" /></div>
         <nav class="flex justify-center items-center gap-15 capitalize">
-          <ul class="flex justify-center items-center gap-8 []">
+          <ul class="md:flex justify-center items-center gap-8 hidden">
             <li class="text-black"><a href="#">Home</a></li>
             <li><a href="#">Shop</a></li>
             <li><a href="#">About US</a></li>
@@ -64,6 +72,35 @@
           </div>
         </nav>
       </header>
+
+      <section class="fyler-section py-30">
+        <div
+          class="flyer-content grid grid-cols-1 md:grid-cols-2 [&>div]:flex [&>div]:flex-col [&>div]:justify-end"
+        >
+          <div
+            class="hero-img order-1 md:order-2 w-full relative -right-[10%] md:right-auto mb-15 md:mb-0"
+          >
+            <img
+              class="w-full"
+              src="./assets/hero-flower.png"
+              alt="hero-flower"
+            />
+          </div>
+          <div class="hero-desc order-2 md:order-1">
+            <h1 class="text-6xl font-bold uppercase font-noto text-black pb-3">
+              always
+              <span class="text-[var(--theme-color-orange)]"
+                >fresh flowers</span
+              >
+            </h1>
+            <p>
+              Indulge your senses with the beauty and fragrance of our fresh
+              flower shop. From classic roses to exotic blooms, we offer a wide
+              variety of fresh flowers that are perfect for any occasion.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   </body>
 </html>
