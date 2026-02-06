@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
     <title>Faugei - Always Fresh Flowers</title>
     <!--  ################## add custom google font ################## -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,8 +16,6 @@
     <!--  ##################ADD Tailwind CSS via CDN  ################## -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- ADD ################## Tailwind CSS via CDN ################## -->
-
-    <link rel="stylesheet" href="./style.css" />
     <style type="text/tailwindcss">
       :root {
         --theme-color-gray: #f5f8ff;
@@ -87,7 +85,9 @@
             />
           </div>
           <div class="hero-desc order-2 md:order-1">
-            <h1 class="text-6xl font-bold uppercase font-noto text-black pb-3">
+            <h1
+              class="text-6xl font-bold uppercase font-noto text-black pb-3 leading-20"
+            >
               always
               <span class="text-[var(--theme-color-orange)]"
                 >fresh flowers</span
@@ -98,6 +98,63 @@
               flower shop. From classic roses to exotic blooms, we offer a wide
               variety of fresh flowers that are perfect for any occasion.
             </p>
+          </div>
+        </div>
+      </section>
+      <section class="plants">
+        <div class="plants-container text-center">
+          <h1 class="text-4xl text-black font-noto font-bold">
+            <span class="text-[var(--theme-color-orange)]">Our</span>
+            Plants
+          </h1>
+          <p class="w-[80%] lg:w-[70%] my-10 mx-auto">
+            Indulge your senses with the beauty and fragrance of our fresh
+            flower shop. From classic roses to exotic blooms, we offer a wide
+            variety of fresh.
+          </p>
+          <div
+            class="plant-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 [&>div]:flex [&>div]:justify-center [&>div]:items-center [&>div]:flex-col [&>div]:mb-10"
+          >
+            <div class="single-plants">
+              <img src="./assets/sample-flower-image.png" alt="flower image" />
+              <p>Lily Blossom</p>
+              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+            </div>
+            <div class="single-plants">
+              <img src="./assets/sample-flower-image.png" alt="flower image" />
+              <p>Lily Blossom</p>
+              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+            </div>
+            <div class="single-plants">
+              <img src="./assets/sample-flower-image.png" alt="flower image" />
+              <p>Lily Blossom</p>
+              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+            </div>
+            <div class="single-plants">
+              <img src="./assets/sample-flower-image.png" alt="flower image" />
+              <p>Lily Blossom</p>
+              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+            </div>
+            <div class="single-plants">
+              <img src="./assets/sample-flower-image.png" alt="flower image" />
+              <p>Lily Blossom</p>
+              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+            </div>
+            <div class="single-plants">
+              <img src="./assets/sample-flower-image.png" alt="flower image" />
+              <p>Lily Blossom</p>
+              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+            </div>
+            <div class="single-plants">
+              <img src="./assets/sample-flower-image.png" alt="flower image" />
+              <p>Lily Blossom</p>
+              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+            </div>
+            <div class="single-plants">
+              <img src="./assets/sample-flower-image.png" alt="flower image" />
+              <p>Lily Blossom</p>
+              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+            </div>
           </div>
         </div>
       </section>
