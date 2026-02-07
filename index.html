@@ -42,31 +42,36 @@
             <li><a href="#">Shop</a></li>
             <li><a href="#">About US</a></li>
           </ul>
-          <div class="cart flex justify-center items-center gap-1 text-black">
-            <svg
-              class="w-6 h-6 stroke-4"
-              viewBox="0 0 90 90"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          <div class="cart">
+            <a
+              class="flex justify-center items-center gap-1 text-black"
+              href="#"
             >
-              <!-- Cart body -->
-              <path
-                d="M74.4 66.93H27.28c-3.49 0-5.55-2.66-5.78-5.3-.18-2.06.74-4.33 2.79-5.5L16.75 22.34c-.13-.6.01-1.21.39-1.69.38-.47.95-.75 1.56-.75H88c.65 0 1.26.31 1.63.84.38.53.47 1.21.26 1.82l-7.98 22.88a8 8 0 0 1-6.41 5.44l-48.52 8.48c-1.5.27-1.51 1.54-1.47 1.93.03.39.26 1.64 1.79 1.64H74.4"
-              />
-              <!-- Wheels -->
-              <circle cx="27.85" cy="76.85" r="6.56" />
-              <circle cx="68.85" cy="76.85" r="6.56" />
-              <!-- Handle -->
-              <path
-                d="M18.7 23.9a2 2 0 0 1-1.95-1.56l-1.41-6.3a6.6 6.6 0 0 0-6.43-5.15H2"
-              />
-            </svg>
+              <svg
+                class="w-6 h-6 stroke-4"
+                viewBox="0 0 90 90"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <!-- Cart body -->
+                <path
+                  d="M74.4 66.93H27.28c-3.49 0-5.55-2.66-5.78-5.3-.18-2.06.74-4.33 2.79-5.5L16.75 22.34c-.13-.6.01-1.21.39-1.69.38-.47.95-.75 1.56-.75H88c.65 0 1.26.31 1.63.84.38.53.47 1.21.26 1.82l-7.98 22.88a8 8 0 0 1-6.41 5.44l-48.52 8.48c-1.5.27-1.51 1.54-1.47 1.93.03.39.26 1.64 1.79 1.64H74.4"
+                />
+                <!-- Wheels -->
+                <circle cx="27.85" cy="76.85" r="6.56" />
+                <circle cx="68.85" cy="76.85" r="6.56" />
+                <!-- Handle -->
+                <path
+                  d="M18.7 23.9a2 2 0 0 1-1.95-1.56l-1.41-6.3a6.6 6.6 0 0 0-6.43-5.15H2"
+                />
+              </svg>
 
-            cart
-            <span>($56)</span>
+              cart
+              <span>($56)</span>
+            </a>
           </div>
         </nav>
       </header>
@@ -113,51 +118,116 @@
             variety of fresh.
           </p>
           <div
-            class="plant-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 [&>div]:flex [&>div]:justify-center [&>div]:items-center [&>div]:flex-col [&>div]:mb-10"
+            class="plant-list grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 [&>div]:flex [&>div]:justify-center [&>div]:items-center [&>div]:flex-col [&>div]:mb-10"
           >
-            <div class="single-plants">
-              <img src="./assets/sample-flower-image.png" alt="flower image" />
+            <div class="single-plants text-black">
+              <img
+                class="w-full m-5"
+                src="./assets/sample-flower-image.png"
+                alt="flower image"
+              />
               <p>Lily Blossom</p>
-              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+              <p class="text-2xl font-bold uppercase">20 usd</p>
+              <span
+                class="w-full mt-5 p-2 text-white text-sm uppercase bg-[var(--theme-color-orange)]"
+                ><a href="#">Add to cart</a></span
+              >
             </div>
-            <div class="single-plants">
-              <img src="./assets/sample-flower-image.png" alt="flower image" />
+            <div class="single-plants text-black">
+              <img
+                class="w-full m-5"
+                src="./assets/sample-flower-image.png"
+                alt="flower image"
+              />
               <p>Lily Blossom</p>
-              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+              <p class="text-2xl font-bold uppercase">20 usd</p>
+              <span
+                class="w-full mt-5 p-2 text-white text-sm uppercase bg-[var(--theme-color-orange)]"
+                ><a href="#">Add to cart</a></span
+              >
             </div>
-            <div class="single-plants">
-              <img src="./assets/sample-flower-image.png" alt="flower image" />
+            <div class="single-plants text-black">
+              <img
+                class="w-full m-5"
+                src="./assets/sample-flower-image.png"
+                alt="flower image"
+              />
               <p>Lily Blossom</p>
-              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+              <p class="text-2xl font-bold uppercase">20 usd</p>
+              <span
+                class="w-full mt-5 p-2 text-white text-sm uppercase bg-[var(--theme-color-orange)]"
+                ><a href="#">Add to cart</a></span
+              >
             </div>
-            <div class="single-plants">
-              <img src="./assets/sample-flower-image.png" alt="flower image" />
+            <div class="single-plants text-black">
+              <img
+                class="w-full m-5"
+                src="./assets/sample-flower-image.png"
+                alt="flower image"
+              />
               <p>Lily Blossom</p>
-              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+              <p class="text-2xl font-bold uppercase">20 usd</p>
+              <span
+                class="w-full mt-5 p-2 text-white text-sm uppercase bg-[var(--theme-color-orange)]"
+                ><a href="#">Add to cart</a></span
+              >
             </div>
-            <div class="single-plants">
-              <img src="./assets/sample-flower-image.png" alt="flower image" />
+            <div class="single-plants text-black">
+              <img
+                class="w-full m-5"
+                src="./assets/sample-flower-image.png"
+                alt="flower image"
+              />
               <p>Lily Blossom</p>
-              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+              <p class="text-2xl font-bold uppercase">20 usd</p>
+              <span
+                class="w-full mt-5 p-2 text-white text-sm uppercase bg-[var(--theme-color-orange)]"
+                ><a href="#">Add to cart</a></span
+              >
             </div>
-            <div class="single-plants">
-              <img src="./assets/sample-flower-image.png" alt="flower image" />
+            <div class="single-plants text-black">
+              <img
+                class="w-full m-5"
+                src="./assets/sample-flower-image.png"
+                alt="flower image"
+              />
               <p>Lily Blossom</p>
-              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+              <p class="text-2xl font-bold uppercase">20 usd</p>
+              <span
+                class="w-full mt-5 p-2 text-white text-sm uppercase bg-[var(--theme-color-orange)]"
+                ><a href="#">Add to cart</a></span
+              >
             </div>
-            <div class="single-plants">
-              <img src="./assets/sample-flower-image.png" alt="flower image" />
+            <div class="single-plants text-black">
+              <img
+                class="w-full m-5"
+                src="./assets/sample-flower-image.png"
+                alt="flower image"
+              />
               <p>Lily Blossom</p>
-              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+              <p class="text-2xl font-bold uppercase">20 usd</p>
+              <span
+                class="w-full mt-5 p-2 text-white text-sm uppercase bg-[var(--theme-color-orange)]"
+                ><a href="#">Add to cart</a></span
+              >
             </div>
-            <div class="single-plants">
-              <img src="./assets/sample-flower-image.png" alt="flower image" />
+            <div class="single-plants text-black">
+              <img
+                class="w-full m-5"
+                src="./assets/sample-flower-image.png"
+                alt="flower image"
+              />
               <p>Lily Blossom</p>
-              <p class="text-2xl text-black font-bold uppercase">20 usd</p>
+              <p class="text-2xl font-bold uppercase">20 usd</p>
+              <span
+                class="w-full mt-5 p-2 text-white text-sm uppercase bg-[var(--theme-color-orange)]"
+                ><a href="#">Add to cart</a></span
+              >
             </div>
           </div>
         </div>
       </section>
+      <section class="admirerer"></section>
     </div>
   </body>
 </html>
