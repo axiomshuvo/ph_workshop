@@ -239,7 +239,7 @@
             />
             <span>
               <img
-                class="absolute -top-25 -right-25 w-60 h-auto"
+                class="absolute -top-25 -right-25 w-60 h-auto hidden lg:block"
                 src="./assets/trusted-badge.png"
                 alt="trusted-badge"
               />
@@ -268,6 +268,67 @@
                 wide variety of fresh.
               </li>
             </ul>
+          </div>
+        </div>
+      </section>
+      <section class="deals">
+        <div class="deals-container text-center">
+          <h1 class="text-5xl text-black font-noto font-bold pb-10">
+            Latest
+            <span class="text-[var(--theme-color-orange)]">Deals</span>
+          </h1>
+          <p class="w-[90%] lg:w-[70%] mx-auto text-2xl">
+            Indulge your senses with the beauty and fragrance of our fresh
+            flower shop. From classic roses to exotic blooms, we offer a wide
+            variety of fresh.
+          </p>
+
+          <div
+            class="deals-gallery grid lg:grid-cols-3 lg:grid-rows-2 gap-8 py-25"
+          >
+            <div
+              class="single-deal lg:col-span-1 lg:row-span-1 lg:order-1 relative rounded-4xl overflow-hidden"
+            >
+              <img
+                class="w-full h-full"
+                src="./assets/deal-bloom.png"
+                alt="deal bloom"
+              />
+              <div
+                class="deal-details absolute w-full h-full left-0 top-0 bg-black/55 text-white flex justify-center items-center flex-col"
+              >
+                <p class="font-noto pb-3">60% Off | Bloom Plant</p>
+                <a class="underline" href="#">Shop Now</a>
+              </div>
+            </div>
+
+            <div
+              class="single-deal lg:col-span-1 lg:row-span-1 lg:order-3 relative rounded-4xl overflow-hidden"
+            >
+              <img class="w-full" src="./assets/deal-ana.png" alt="deal ana" />
+              <div
+                class="deal-details absolute w-full h-full left-0 top-0 bg-black/55 text-white flex justify-center items-center flex-col"
+              >
+                <p class="font-noto pb-3">30% Off | Ana Plant</p>
+                <a class="underline" href="#">Shop Now</a>
+              </div>
+            </div>
+
+            <div
+              class="single-deal lg:col-span-2 lg:row-span-2 lg:order-2 relative rounded-4xl overflow-hidden"
+            >
+              <img
+                class="w-full"
+                src="./assets/deal-zabo.png"
+                alt="deal zabo"
+              />
+              <div
+                class="deal-details absolute w-full h-full left-0 top-0 bg-black/55 text-white flex justify-center items-center flex-col"
+              >
+                <p class="font-noto pb-3">25% Off | Zabo Plant</p>
+                <a class="underline" href="#">Shop Now</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
