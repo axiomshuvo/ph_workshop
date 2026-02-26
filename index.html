@@ -6,8 +6,6 @@
     <title>Payoo | Login</title>
     <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
 
-    <link rel="stylesheet" href="./style.css" />
-
     <!-- Tailwind + Daisy  -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -31,6 +29,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="./style.css" />
     <style>
       * {
         font-family: "Outfit", sans-serif;
@@ -49,22 +48,28 @@
           <fieldset class="fieldset">
             <label class="label text-neutral font-bold">Mobile number</label>
             <input
+              id="input-number"
               maxlength="11"
               minlength="11"
               type="text"
+              value="0123456789"
               class="input rounded-full bg-base-200"
               placeholder="Enter your 11 digit number"
             />
             <br />
             <label class="label text-neutral font-bold">4 Digit Pin</label>
             <input
+              id="input-pin"
               maxlength="4"
               minlength="4"
               type="password"
+              value="1234"
               class="input rounded-full bg-base-200"
               placeholder="Password"
             />
-            <button class="btn btn-primary rounded-full mt-4">Login</button>
+            <button id="login-btn" class="btn btn-primary rounded-full mt-4">
+              Login
+            </button>
           </fieldset>
         </div>
       </div>
