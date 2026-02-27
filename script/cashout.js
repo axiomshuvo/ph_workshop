@@ -15,22 +15,29 @@ document.getElementById("cashout-btn").addEventListener("click", () => {
 
   // get the amount, validate , covert to number
   const cashoutAmountInput = document.getElementById("cashout-amount");
-  const cashoutAmount = cashoutAmountInput.value;
+  const cashoutAmount = Number(cashoutAmountInput.value);
   console.log(cashoutAmount);
 
   // get the current balance, validate, convert to number
 
   const currentBalanceInput = document.getElementById("balance");
-  const currentBalance = currentBalanceInput.innerText;
+  const currentBalance = Number(currentBalanceInput.innerText);
   console.log(currentBalance);
 
-  // Calculate the new balance
-  const newBalance = Number(currentBalance) - Number(cashoutAmount);
+  console.log(typeof cashoutAmount);
+  console.log(typeof currentBalance);
 
-  if (newBalance < 0) {
+  if (isNaN(cashoutAmount) || cashoutAmount <= 0) {
+    alert("Invalid Cashout Amount");
+    return;
+  }
+  if (cashoutAmount > currentBalance) {
     alert("Insufficient Balance");
     return;
   }
+
+  // Calculate the new balance
+  const newBalance = Number(currentBalance) - Number(cashoutAmount);
   console.log(newBalance);
 
   // get the pin, verify the pin
