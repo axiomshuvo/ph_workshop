@@ -92,7 +92,7 @@
       </div>
     </section>
 
-    <section id="cashout" class="w-11/12 mx-auto py-5">
+    <section id="cashout" class="w-11/12 mx-auto py-5 hidden">
       <h2 class="text-xl font-bold mb-5">Cashout</h2>
       <div class="card bg-base-100 w-full shadow rounded-2xl">
         <div class="card-body">
@@ -103,7 +103,7 @@
               maxlength="11"
               minlength="11"
               type="text"
-              value="0123456789"
+              value="10123456789"
               class="input rounded-full bg-base-200 w-full"
               placeholder="Enter agent 11 digit number"
             />
@@ -129,7 +129,7 @@
               maxlength="4"
               minlength="4"
               type="password"
-              value=""
+              value="1234"
               class="input rounded-full bg-base-200 w-full"
               placeholder="Enter your 4 digit pin"
             />
@@ -141,6 +141,72 @@
       </div>
     </section>
 
+    <section id="add-money" class="w-11/12 mx-auto py-5">
+      <h2 class="text-xl font-bold mb-5">Add Money</h2>
+      <div class="card bg-base-100 w-full shadow rounded-2xl">
+        <div class="card-body">
+          <fieldset class="fieldset">
+            <label for="add-money-bank" class="label text-neutral font-bold"
+              >Select A Bank</label
+            >
+            <select
+              id="add-money-bank"
+              class="select rounded-full bg-base-200 w-full"
+            >
+              <option disabled selected>Select Bank</option>
+              <option value="ebl">EBL</option>
+              <option value="sbl">SBL</option>
+              <option value="sib">SIB</option>
+              <option value="hsbc">HSBC</option>
+              <option value="one">ONE</option>
+            </select>
+            <br />
+
+            <label class="label text-neutral font-bold">Bank Acc Number</label>
+            <input
+              id="bank-acc-number"
+              maxlength="11"
+              minlength="11"
+              type="text"
+              value="10123456789"
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Enter bank acc number"
+            />
+
+            <br />
+
+            <label class="label text-neutral font-bold">Amount to Add</label>
+            <input
+              id="add-money-amount"
+              maxlength="11"
+              minlength="11"
+              type="text"
+              value=""
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Add amount to Add"
+            />
+
+            <br />
+
+            <label class="label text-neutral font-bold">Pin Number</label>
+            <input
+              id="add-money-pin"
+              maxlength="4"
+              minlength="4"
+              type="password"
+              value=""
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Enter your 4 digit pin"
+            />
+            <button id="cashout-btn" class="btn btn-primary rounded-full mt-4">
+              Add Money
+            </button>
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <script src="./script/machine.js"></script>
     <script src="./script/cashout.js"></script>
   </body>
 </html>
