@@ -33,7 +33,23 @@ document.getElementById("cashout-btn").addEventListener("click", () => {
   if (cashoutPin == "1234") {
     // update the balance
     setBalance(newBalance);
-    alert("Cashout successful!");
+    alert(`৳ ${cashoutAmount}BDT cashout successful to ${cashoutNUmber}  `);
+
+    // get history container
+    const historylist = document.getElementById("history-container");
+
+    // create div element
+    const list = document.createElement("div");
+    // insert innerHtml
+    list.innerHTML = `
+         <div class="transaction-card p-2 bg-base-100">
+         <p>
+         ৳ ${cashoutAmount} cashout successful to ${cashoutNUmber}  
+         </p>
+         </div>
+    `;
+    // append element
+    historylist.appendChild(list);
   } else {
     alert("Invalid Pin");
     return;

@@ -44,7 +44,9 @@
             <img src="./assets/logo.png" alt="Payoo logo" />
           </div>
           <div class="balance-info">
-            <h2 class="text-2xl font-bold">$<span id="balance">45000</span></h2>
+            <h2 class="text-2xl font-bold">
+              ৳ <span id="balance">45000</span>
+            </h2>
             <p class="text-neutral/50">Available Balance</p>
           </div>
         </div>
@@ -55,6 +57,7 @@
         </div>
       </section>
     </header>
+
     <section class="w-11/12 mx-auto py-10 space-y-5">
       <h2 class="text-3xl font-bold">
         Welcome to Pay<span class="text-primary">oo</span>
@@ -64,83 +67,49 @@
         low and
       </p>
       <div class="buttons grid grid-cols-3 gap-3">
-        <button class="btn flex-col py-4 h-full btn-soft">
+        <button
+          data-section="add-money"
+          class="btn flex-col py-4 h-full btn-outline hover:bg-primary hover:text-white"
+        >
           <img src="./assets/opt-1.png" alt="add money" />
           <p>Add Money</p>
         </button>
 
-        <button class="btn flex-col py-4 h-full btn-soft">
+        <button
+          data-section="cashout"
+          class="btn flex-col py-4 h-full btn-soft hover:bg-primary hover:text-white"
+        >
           <img src="./assets/opt-2.png" alt="cashout" />
           <p>Cashout</p>
         </button>
-        <button class="btn flex-col py-4 h-full btn-soft">
+        <button
+          data-section="transfer-money"
+          class="btn flex-col py-4 h-full btn-soft hover:bg-primary hover:text-white"
+        >
           <img src="./assets/opt-3.png" alt="send money" />
-          <p>Send Money</p>
+          <p>Transfer Money</p>
         </button>
-        <button class="btn flex-col py-4 h-full btn-soft">
+        <button
+          class="btn flex-col py-4 h-full btn-soft hover:bg-primary hover:text-white"
+        >
           <img src="./assets/opt-4.png" alt="get bonus" />
           <p>Get Bonus</p>
         </button>
-        <button class="btn flex-col py-4 h-full btn-soft">
+        <button
+          class="btn flex-col py-4 h-full btn-soft hover:bg-primary hover:text-white"
+        >
           <img src="./assets/opt-5.png" alt="pay bill" />
           <p>Pay Bill</p>
         </button>
-        <button class="btn flex-col py-4 h-full btn-soft">
+        <button
+          data-section="history"
+          class="btn flex-col py-4 h-full btn-soft hover:bg-primary hover:text-white"
+        >
           <img src="./assets/opt-6.png" alt="transactions" />
           <p>Transactions</p>
         </button>
       </div>
     </section>
-
-    <section id="cashout" class="w-11/12 mx-auto py-5 hidden">
-      <h2 class="text-xl font-bold mb-5">Cashout</h2>
-      <div class="card bg-base-100 w-full shadow rounded-2xl">
-        <div class="card-body">
-          <fieldset class="fieldset">
-            <label class="label text-neutral font-bold">Agent number</label>
-            <input
-              id="cashout-number"
-              maxlength="11"
-              minlength="11"
-              type="text"
-              value="10123456789"
-              class="input rounded-full bg-base-200 w-full"
-              placeholder="Enter agent 11 digit number"
-            />
-
-            <br />
-
-            <label class="label text-neutral font-bold">Amount</label>
-            <input
-              id="cashout-amount"
-              maxlength="11"
-              minlength="11"
-              type="text"
-              value="6700"
-              class="input rounded-full bg-base-200 w-full"
-              placeholder="Enter amount to withdraw"
-            />
-
-            <br />
-
-            <label class="label text-neutral font-bold">Pin Number</label>
-            <input
-              id="cashout-pin"
-              maxlength="4"
-              minlength="4"
-              type="password"
-              value="1234"
-              class="input rounded-full bg-base-200 w-full"
-              placeholder="Enter your 4 digit pin"
-            />
-            <button id="cashout-btn" class="btn btn-primary rounded-full mt-4">
-              Withdraw Money
-            </button>
-          </fieldset>
-        </div>
-      </div>
-    </section>
-
     <section id="add-money" class="w-11/12 mx-auto py-5">
       <h2 class="text-xl font-bold mb-5">Add Money</h2>
       <div class="card bg-base-100 w-full shadow rounded-2xl">
@@ -198,8 +167,118 @@
               class="input rounded-full bg-base-200 w-full"
               placeholder="Enter your 4 digit pin"
             />
-            <button id="cashout-btn" class="btn btn-primary rounded-full mt-4">
+            <button
+              id="add-money-btn"
+              class="btn btn-primary rounded-full mt-4"
+            >
               Add Money
+            </button>
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <section id="cashout" class="w-11/12 mx-auto py-5 hidden">
+      <h2 class="text-xl font-bold mb-5">Cashout</h2>
+      <div class="card bg-base-100 w-full shadow rounded-2xl">
+        <div class="card-body">
+          <fieldset class="fieldset">
+            <label class="label text-neutral font-bold">Agent number</label>
+            <input
+              id="cashout-number"
+              maxlength="11"
+              minlength="11"
+              type="text"
+              value="10123456789"
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Enter agent 11 digit number"
+            />
+
+            <br />
+
+            <label class="label text-neutral font-bold">Amount</label>
+            <input
+              id="cashout-amount"
+              maxlength="11"
+              minlength="11"
+              type="text"
+              value="6700"
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Enter amount to withdraw"
+            />
+
+            <br />
+
+            <label class="label text-neutral font-bold">Pin Number</label>
+            <input
+              id="cashout-pin"
+              maxlength="4"
+              minlength="4"
+              type="password"
+              value="1234"
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Enter your 4 digit pin"
+            />
+            <button id="cashout-btn" class="btn btn-primary rounded-full mt-4">
+              Withdraw Money
+            </button>
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <section id="history" class="w-11/12 mx-auto py-5 hidden">
+      <h2 class="text-xl font-bold mb-5">History</h2>
+      <div id="history-container" class="space-y-5">
+        <!-- <div class="transaction-card p-5 bg-base-100"></div> -->
+      </div>
+    </section>
+
+    <section id="transfer-money" class="w-11/12 mx-auto py-5 hidden">
+      <h2 class="text-xl font-bold mb-5">Transfer Money</h2>
+      <div class="card bg-base-100 w-full shadow rounded-2xl">
+        <div class="card-body">
+          <fieldset class="fieldset">
+            <label class="label text-neutral font-bold"
+              >User Account Number</label
+            >
+            <input
+              id="transfer-account"
+              maxlength="11"
+              minlength="11"
+              type="text"
+              value="10123456789"
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Enter 11 digit acc number"
+            />
+
+            <br />
+
+            <label class="label text-neutral font-bold">Amount</label>
+            <input
+              id="transfer-amount"
+              maxlength="11"
+              minlength="11"
+              type="text"
+              value="6700"
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Enter amount to transfer"
+            />
+
+            <br />
+
+            <label class="label text-neutral font-bold">Pin Number</label>
+            <input
+              id="transfer-pin"
+              maxlength="4"
+              minlength="4"
+              type="password"
+              value="1234"
+              class="input rounded-full bg-base-200 w-full"
+              placeholder="Enter your 4 digit pin"
+            />
+            <button id="transfer-btn" class="btn btn-primary rounded-full mt-4">
+              Send Now
             </button>
           </fieldset>
         </div>
@@ -208,5 +287,7 @@
 
     <script src="./script/machine.js"></script>
     <script src="./script/cashout.js"></script>
+    <script src="./script/addMoney.js"></script>
+    <script src="./script/transfer.js"></script>
   </body>
 </html>
