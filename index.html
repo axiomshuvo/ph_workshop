@@ -30,8 +30,8 @@
     </style>
   </head>
   <body>
-    <div class="container border-amber-400 border mx-auto">
-      <section class="banner grid grid-cols-2">
+    <div class="container mx-auto">
+      <section class="banner grid grid-cols-1 md:grid-cols-2">
         <div class="left-banner space-y-[30px]">
           <h1 class="text-[80px] font-bold">
             It's good <br />
@@ -56,13 +56,86 @@
         >
           <img src="./images/banner.png" alt="banner" />
           <div
-            class="rating bg-white rounded-xl shadow-2xl flex justify-center items-center gap-2 absolute w-[250px] left-[220px] bottom-[10px] py-[25px] px-[15px]"
+            class="rating bg-white rounded-xl shadow-2xl flex justify-center items-center gap-2 absolute w-[250px] left-[220px] bottom-2.5 py-[25px] px-[15px]"
           >
             <i class="fa-solid fa-star text-4xl text-yellow-400"></i>
             <div class="rating-content">
               <h2 class="font-bold text-4xl">5.00</h2>
               <p>Trust Rating</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- feature section  -->
+      <section id="feature" class="container mx-auto my-[60px]">
+        <div class="text-center max-w-[65%] mx-auto">
+          <h2 class="font-bold text-[45px]">Our Feature Products</h2>
+          <p class="text-[#777777]">
+            There are many variations of passages of Lorem Ipsum available, but
+            the majority have suffered alteration in some form, by injected
+            humour, or randomised words which don't look even slightly
+            believable.
+          </p>
+        </div>
+
+        <div
+          class="featured-card-parent text-center px-[5%] md:px-0 grid grid-cols-1 mt-12 md:grid-cols-2 lg:grid-cols-4 gap-4"
+        >
+          <div
+            class="fearure-card cursor-pointer rounded-xl bg-linear-to-t from-white to-[#f2f2f2]"
+          >
+            <img
+              class="mx-auto py-[30px]"
+              src="./images/tea-1.png"
+              alt="milk tea"
+            />
+            <h2 class="font-semibold">Milk Tea</h2>
+            <p class="text-[#777777]">
+              Creamer could be replaced by fresh milk
+            </p>
+          </div>
+
+          <div
+            class="fearure-card cursor-pointer rounded-xl bg-linear-to-t from-white to-[#f2f2f2]"
+          >
+            <img
+              class="mx-auto py-[30px]"
+              src="./images/tea-2.png"
+              alt="milk tea"
+            />
+            <h2 class="font-semibold">Black Tea</h2>
+            <p class="text-[#777777]">
+              Creamer could be replaced by fresh milk
+            </p>
+          </div>
+
+          <div
+            class="fearure-card cursor-pointer rounded-xl bg-linear-to-t from-white to-[#f2f2f2]"
+          >
+            <img
+              class="mx-auto py-[30px]"
+              src="./images/tea-3.png"
+              alt="milk tea"
+            />
+            <h2 class="font-semibold">Lemon Tea</h2>
+            <p class="text-[#777777]">
+              Creamer could be replaced by fresh milk
+            </p>
+          </div>
+
+          <div
+            class="fearure-card cursor-pointer rounded-xl bg-linear-to-t from-white to-[#f2f2f2]"
+          >
+            <img
+              class="mx-auto py-[30px]"
+              src="./images/tea-4.png"
+              alt="milk tea"
+            />
+            <h2 class="font-semibold">Green Tea</h2>
+            <p class="text-[#777777]">
+              Creamer could be replaced by fresh milk
+            </p>
           </div>
         </div>
       </section>
