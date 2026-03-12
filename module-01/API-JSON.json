@@ -1,0 +1,60 @@
+////////////////////////////////////////////////////////////////////////!
+//#  ১️⃣ JSON মানে কী?
+//@ JSON = JavaScript Object Notation
+//? এটা text-based format, যেটা data represent করার জন্য use হয়।
+//? Humans readable এবং machine readable দুইটাই।
+//? মূলত key-value pair আকারে থাকে।
+{
+  "name": "Rahim",
+  "age": 25,
+  "isStudent": true
+}
+// "name", "age", "isStudent" → keys
+// "Rahim", 25, true → values
+
+//@ ২️⃣ JSON Structure
+//? JSON মূলত দুই ধরনের structure-এ থাকে:
+//? ১. Object → Curly braces {} এর মধ্যে থাকে, key-value pair আকারে।
+{
+  "name": "Rahim",
+  "age": 25,
+  "isStudent": true
+}
+//? ২. Array → Square brackets [] এর মধ্যে থাকে, ordered list আকারে।
+[
+  "apple",
+  "banana",
+  "cherry"
+]
+
+//$ Object + Array একসাথে ও থাকতে পারে:
+{
+  "name": "Rahim",
+  "age": 25,
+  "hobbies": ["reading", "coding", "traveling"]
+}
+//  hobbies → key and ["reading", "coding", "traveling"] → value (array of strings)
+
+//@ ৩️⃣ JSON এর Rules
+//? ১. Keys অবশ্যই double quotes "" এর মধ্যে থাকতে হবে। (Single quotes '' নয়)
+//? ২. Values হতে পারে string, number, boolean, null, array, অথবা object.
+//? ৩. Key-value pair গুলো comma (,) দিয়ে আলাদা করতে হবে। 
+//! কিন্তু শেষ key-value pair এর পরে comma লাগবে না। ভুল: {"name": "Rahim",} ঠিক: {"name": "Rahim"}
+//! ৪. JSON এর মধ্যে comments allowed নয়। (যেমন: // বা /* */)
+//! ৫. JSON এর মধ্যে function, undefined, অথবা date type values allowed নয়।
+//? ৬. JSON case-sensitive, তাই keys এবং values এর case ঠিক রাখতে হবে। (যেমন: "Name" এবং "name" আলাদা)
+
+//@ JSON Advantages 
+//? ১. Lightweight এবং easy to read/write.
+//? ২. Programming language independent, তাই অনেক ভাষায় support করে।
+//? ৩. Data interchange format হিসেবে widely used, বিশেষ করে web applications এ।
+//? ৪. Easily parseable এবং generateable, তাই APIs এবং data storage এর জন্য ideal।
+//? ৫. Human readable হওয়ায় debugging সহজ করে।
+//? ৬. Supports nested structures, তাই complex data represent করতে পারে।
+//? ৭. JSON Schema এর মাধ্যমে data validation এবং documentation সহজ করে।
+//? ৮. JavaScript এর সাথে seamless integration, তাই web development এ খুব popular।
+//? ৯. JSON এর মাধ্যমে data exchange করার জন্য অনেক libraries এবং tools available, যা development process কে আরও smooth করে।
+
+//! ✅ Summary:
+//@ JSON হলো text-based structured data format, যেটা key-value pair আকারে থাকে। এটি readable, lightweight এবং API, config files বা data exchange এর জন্য perfect।
+
