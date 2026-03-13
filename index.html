@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Hone</title>
+    <style>
+      #post-container {
+        max-width: 1160px;
+        margin: 20px auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+      }
+      .post-card {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .post-card p {
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JS Hone</h1>
+    <p>
+      Welcome to the JavaScript Hone workshop! This is your starting point for
+      learning JavaScript. Below are some resources and exercises to help you
+      get started.
+    </p>
+
+    <h2>Getting Started</h2>
+    <p>To begin, you can check out the following resources:</p>
+    <ul>
+      <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+          >MDN Web Docs - JavaScript</a
+        >
+      </li>
+      <li><a href="https://www.javascript.com/">JavaScript.com</a></li>
+      <li>
+        <a
+          href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/"
+          >freeCodeCamp - JavaScript Algorithms and Data Structures</a
+        >
+      </li>
+    </ul>
+
+    <h2>Exercises</h2>
+    <p>Try out these exercises to practice your JavaScript skills:</p>
+    <ul>
+      <li><a href="./module-01/ES6.js">Module 01 ES6 Exercise</a></li>
+      <li>
+        <a href="./module-01/API-JSON.json">Module 01 API and JSON Exercise</a>
+      </li>
+    </ul>
+    <div id="app">
+      <!-- <button onclick="loadData()">Click Me</button> -->
+      <button onclick="loadPost()">Load Post</button>
+    </div>
+
+    <div id="post-container"></div>
+
+    <script src="./module-01/practice.js"></script>
+  </body>
+</html>
