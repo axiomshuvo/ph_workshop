@@ -74,25 +74,152 @@
 
 // // };
 
-const loadPost = () => {
-  fetch("https://jsonplaceholder.typicode.com/posts")
-    .then((Response) => Response.json())
-    .then((data) => work(data));
-};
+//# const loadPost = () => {
+//   fetch("https://jsonplaceholder.typicode.com/posts")
+//     .then((Response) => Response.json())
+//     .then((data) => work(data));
+// };
 
-const work = (data) => {
-  const poster = document.getElementById("post-container");
-  poster.innerHTML = "";
+// const work = (data) => {
+//   const poster = document.getElementById("post-container");
+//   poster.innerHTML = "";
 
-  data.forEach((elem) => {
-    const postCard = document.createElement("div");
-    postCard.innerHTML = `
-    <div class="post-card">
-        <h2>${elem.title}</h2>
-        <p>${elem.body}</p>
-      </div>
-    `;
+//   data.forEach((elem) => {
+//     const postCard = document.createElement("div");
+//     postCard.innerHTML = `
+//     <div class="post-card">
+//         <h2>${elem.title}</h2>
+//         <p>${elem.body}</p>
+//       </div>
+//     `;
 
-    poster.appendChild(postCard);
-  });
-};
+//     poster.appendChild(postCard);
+//   });
+// };
+
+// const loadPost = () => {
+//   fetch("https://jsonplaceholder.typicode.com/todos")
+//     .then((Response) => Response.json())
+//     .then((data) => work(data));
+// };
+
+// const work = (data) => {
+//   const poster = document.getElementById("todo-list");
+//   poster.innerHTML = "";
+//   console.log(data);
+//   data.forEach((elem) => {
+//     const postCard = document.createElement("li");
+//     postCard.classList.add("todo-card");
+//     postCard.innerHTML = `
+//         ${elem.completed == true ? `&#10003;` : `&#10007;`} ${elem.title}
+//       `;
+
+//     poster.appendChild(postCard);
+//   });
+// };
+
+// const loadPost = () => {
+//   fetch("https://jsonplaceholder.typicode.com/photos")
+//     .then((Response) => Response.json())
+//     .then((data) => work(data));
+// };
+
+// const work = (data) => {
+//   const poster = document.getElementById("photo-list");
+//   poster.innerHTML = "";
+//   console.log(data);
+
+//   data.forEach((elem) => {
+//     const postCard = document.createElement("div");
+//     postCard.classList.add("card-basic");
+//     postCard.innerHTML = `
+//                 <div class="card-basic__image">
+//                                 <img src="${elem.thumbnailUrl}" alt="${elem.title}">
+//                 </div>
+//                 <div class="card-basic__content">
+//                         <h3>${elem.title}</h3>
+//                         <a class="card-basic__btn" href="#">Read More</a>
+//                 </div>
+//                 `;
+
+//     poster.appendChild(postCard);
+//   });
+// };
+
+// const loadPost = () => {
+//   fetch("https://dummyjson.com/users    ")
+//     .then((Response) => Response.json())
+//     .then((data) => user(data));
+// };
+
+// const user = (data) => {
+//   const singleUser = document.getElementById("userlist");
+//   console.log(data);
+
+//   data.users.forEach((elem) => {
+//     console.log(elem);
+//     const div = document.createElement("div");
+//     div.classList.add("usercard");
+
+//     div.innerHTML = `
+//       <img src="${elem.image}">
+//       <h3>${elem.firstName} ${elem.lastName}</h3>
+//       <p>${elem.email}</p>
+//       <p>${elem.phone}</p>
+//       <p>${elem.address.city}</p>
+//     `;
+
+//     singleUser.appendChild(div);
+//   });
+// };
+
+// const loadPost = () => {
+//   const url = "https://dummyjson.com/carts";
+//   fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       showCart(data.carts);
+//     });
+// };
+
+// const showCart = (carts) => {
+//   const cartContainer = document.getElementById("cartlist");
+//   cartContainer.innerHTML = "";
+//   //   console.log(carts);
+
+//   carts.forEach((cart) => {
+//     const cartCard = document.createElement("div");
+//     cartCard.classList.add("cartcard");
+//     cartCard.innerHTML = `<h2>Cart ID: ${cart.id} | User ID: ${cart.userId}</h2>`;
+//     // products
+//     cart.products.forEach((product) => {
+//       console.log(product);
+//       const productDiv = document.createElement("div");
+//       productDiv.classList.add("product-card");
+//       productDiv.innerHTML = `
+//         <img src="${product.thumbnail}" alt="${product.title}">
+//           <h3>${product.title}</h3>
+//           <p>Price: $${product.price}</p>
+//           <p>Quantity: ${product.quantity}</p>
+//           <p>Total: $${product.total}</p>
+//         `;
+
+//       cartCard.appendChild(productDiv);
+//     });
+
+//     //cart summary
+//     const summaryDiv = document.createElement("div");
+//     summaryDiv.classList.add("cart-summary");
+//     summaryDiv.innerHTML = `
+//       <h3>Cart Summary</h3>
+//       <p>Total Products: ${cart.totalProducts}</p>
+//       <p>Total Quantity: ${cart.totalQuantity}</p>
+//       <p>Total: $${cart.total}</p>
+//       <p>Discounted Total: $${cart.discountedTotal}</p>
+//     `;
+
+//     cartCard.appendChild(summaryDiv);
+
+//     cartContainer.appendChild(cartCard);
+//   });
+// };
