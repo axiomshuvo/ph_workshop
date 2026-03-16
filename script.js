@@ -45,6 +45,35 @@ const displayLevelWords = (words) => {
   console.log(words);
   const lessonContainer = document.getElementById("lesson-container");
   lessonContainer.innerHTML = "";
+  lessonContainer.className = "";
+  if (!words || words.length === 0) {
+    console.log("No data found");
+    lessonContainer.innerHTML = `
+    <div
+            class="flex flex-col items-center justify-center font-siliguri space-y-4"
+          >
+            <span
+              ><i
+                class="text-9xl text-gray-400 fa-solid fa-triangle-exclamation"
+              ></i
+            ></span>
+            <p class="font-light">
+              এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।
+            </p>
+            <h2 class="text-4xl font-bold">নেক্সট Lesson এ যান</h2>
+          </div>
+    `;
+    return;
+  }
+
+  lessonContainer.classList.add(
+    "grid",
+    "grid-cols-1",
+    "md:grid-cols-2",
+    "lg:grid-cols-3",
+    "gap-6",
+  );
+
   words.forEach((word) => {
     const card = document.createElement("div");
     card.innerHTML = `
