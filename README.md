@@ -1,3 +1,5 @@
+Live [https://a-english-jalana.netlify.app/]
+
 # ENGLISH <img width="25px" src="./assets/logo.png" /> JANALA
 
 ---
@@ -48,7 +50,6 @@ https://openapi.programming-hero.com/api/words/all
 - [ ] Show a default text that will be displayed in the Vocabulary section initially
 - [ ] on Clicking a Specific Lesson Button Load All the words from **API-02**
 - [ ] Display all words for a selected lesson in a card format, showing:
-
   - [ ] Word
   - [ ] Word meaning & pronunciation
   - [ ] Two buttons with relevant icons as per Figma
@@ -112,5 +113,7 @@ function pronounceWord(word) {
 For More >> you can explore this implementation 👉 [https://codepen.io/Ferdous-Zihad/pen/PwoJMmJ](https://codepen.io/Ferdous-Zihad/pen/PwoJMmJ)
 
 ---
+
 Bonus : How to create Private Repository for next assignments
-## Test Repo - :  https://classroom.github.com/a/Fgjib-lr
+
+## Test Repo - : https://classroom.github.com/a/Fgjib-lr
