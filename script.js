@@ -39,6 +39,7 @@ const removeActive = () => {
 // load the lessons when the page loads
 const loadLevelWord = (id) => {
   // console.log(id);
+  manageSpinner(true);
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -77,6 +78,7 @@ const displayLevelWords = (words) => {
             <h2 class="text-4xl font-bold">নেক্সট Lesson এ যান</h2>
           </div>
     `;
+    manageSpinner(false);
     return;
   }
 
@@ -92,7 +94,7 @@ const displayLevelWords = (words) => {
               <button onClick="loadWordDetails(${word.id})" id="" class="btn bg-[#1a91ff10] hover:bg-[#1a91ff50]">
                 <i class="fa-solid fa-circle-info"></i>
               </button>
-              <button class="btn bg-[#1a91ff10] hover:bg-[#1a91ff50]">
+              <button onClick="pronounceWord('${word.word}')" class="btn bg-[#1a91ff10] hover:bg-[#1a91ff50]">
                 <i class="fa-solid fa-volume-high"></i>
               </button>
             </div>
@@ -100,6 +102,7 @@ const displayLevelWords = (words) => {
     `;
     lessonContainer.appendChild(card);
   });
+  manageSpinner(false);
 };
 
 // load word details when click on info button
@@ -132,7 +135,7 @@ displayWordDetails = (wordDetails) => {
   // console.log(wordDetails);
   const detailsBox = document.getElementById("word-details");
   detailsBox.innerHTML = `<div class="">
-          <div class="border border-gray-200 rounded-lg space-y-4 p-2.5 mb-5">
+          <div class="border border-gray-200 rounded-lg space-y-5 p-2.5 mb-5 [&>div>h4]:mb-2.5">
             <h2 class="text-3xl font-semibold">
               ${wordDetails.word} (<i class="fa-solid fa-microphone-lines"></i>:${wordDetails.pronunciation})
             </h2>
@@ -145,11 +148,11 @@ displayWordDetails = (wordDetails) => {
               <p class="font-light">${wordDetails.sentence}</p>
             </div>
             <div>
-              <h4 class="font-light">সমার্থক শব্দ গুলো</h4>
+              <h4 class="">সমার্থক শব্দ গুলো</h4>
               <ul
                 class="flex gap-5 [&>li]:p-2 [&>li]:rounded-lg [&>li]:bg-blue-100 [&>li]:font-light"
               >
-              ${wordDetails.synonyms.map((synonym) => `<li>${synonym}</li>`).join("")}
+              ${wordDetails.synonyms?.map((synonym) => `<li>${synonym}</li>`).join("")}
               </ul>
             </div>
           </div>
@@ -159,4 +162,38 @@ displayWordDetails = (wordDetails) => {
   document.getElementById("word_modal").showModal();
 };
 
+const manageSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("lesson-container-area").classList.add("hidden");
+  } else {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("lesson-container-area").classList.remove("hidden");
+  }
+};
+
 loadLesson();
+
+document.getElementById("searchbtn").addEventListener("click", () => {
+  removeActive();
+  const input = document
+    .getElementById("searchtext")
+    .value.trim()
+    .toLowerCase();
+  console.log(input);
+  fetch("https://openapi.programming-hero.com/api/words/all")
+    .then((res) => res.json())
+    .then((words) => {
+      const filterWords = words.data.filter((word) =>
+        word.word.toLowerCase().includes(input),
+      );
+      displayLevelWords(filterWords);
+    });
+});
+
+// voice
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
