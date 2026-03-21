@@ -201,7 +201,18 @@
     <button onclick="getNumbers()">Read Number from Local Storage</button>
     <button onclick="setObject()">Object to Local</button>
     <button onclick="readObject()">Read Object</button>
+    <br /><br />
+    <input id="product" type="text" placeholder="product" />
+    <input id="quantity" type="number" placeholder="quantity" />
+    <br />
+    <br />
+    <button onclick="addProduct()">Add Product</button>
+    <br /><br />
+    <div>
+      <h3>Added Product List</h3>
+      <ul id="product-list" style="text-transform: capitalize"></ul>
+    </div>
 
-    <script src="./module-js/storage.js"></script>
+    <script src="./module-js/cart.js"></script>
   </body>
 </html>
