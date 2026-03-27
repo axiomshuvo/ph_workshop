@@ -1,16 +1,61 @@
-# React + Vite
+# 🌍 World On The Go
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple project demonstrating the usage of a Countries API. Provides information about all countries, a specific country by code or name, or by language.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📚 Table of Contents
 
-## React Compiler
+- [APIs Used](#-apis-used)
+- [Endpoints](#-endpoints)
+- [Usage](#-usage)
+- [Example](#-example)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🔗 APIs Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project uses a public Countries API to fetch country data.
+
+---
+
+## 📌 Endpoints
+
+### Get all countries
+
+- https://openapi.programming-hero.com/api/all
+
+### Get country by code (example: 116)
+
+- https://openapi.programming-hero.com/api/alpha/116
+
+### Get countries by language (example: English)
+
+- https://openapi.programming-hero.com/api/lang/english
+
+### Get country by name (example: Bangladesh)
+
+- https://openapi.programming-hero.com/api/name/bangladesh
+
+---
+
+## ⚙️ Usage
+
+1. Clone the repository
+2. Open the project
+3. Use the endpoints to fetch data
+4. Display the data in your application
+
+---
+
+## 💡 Example
+
+```js
+fetch("https://openapi.programming-hero.com/api/all")
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+```
+
+## 📄 License
+
+- This project is open-source and available for learning and educational purposes.
