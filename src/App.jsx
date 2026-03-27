@@ -1,121 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Suspense } from "react";
+import "./App.css";
+import Actor from "./components/Actors";
+import Counter from "./components/Counter";
+import Posts from "./components/Posts";
+import Singer from "./components/Singer";
+import Todo from "./components/Todo";
+import Users from "./components/Users";
+
+const fetchUsers = fetch("https://jsonplaceholder.typicode.com/users").then(
+  (res) => res.json(),
+);
+
+const allPost = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  return res.json();
+};
+
+const allPostData = allPost();
 
 function App() {
-  const [count, setCount] = useState(0)
+  const actors = ["bappa raj", "omar sunny", "slaan shah", "jashim", "anwar"];
+
+  const singers = [
+    { id: 1, name: "Dr Mahfuz", age: 68, genre: "classical" },
+    { id: 2, name: "Shuvro Dev", age: 55, genre: "Mordern" },
+    { id: 3, name: "Tahsan", age: 45, genre: "Mordern,Band" },
+    { id: 4, name: "Aybub Baccu", age: 60, genre: "Rock Band" },
+  ];
+
+  function handleClick() {
+    alert(" i am clicked");
+  }
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <h1>Learning List</h1>
 
-      <div className="ticks"></div>
+      <Suspense fallback={<p>Post are comming ...</p>}>
+        <Posts allPostData={allPostData}></Posts>
+      </Suspense>
+      <Suspense fallback={<h3>Loading ...</h3>}>
+        <Users fetchUsers={fetchUsers} />
+      </Suspense>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <Counter />
+      <br />
+      <button type="button" onClick={handleClick}>
+        Click Me
+      </button>
+      <Todo task="learn React " isDone={true} />
+      <Todo task="learn Next " isDone={false} />
+      <Todo task="learn MongoDb " isDone={false} />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      {actors.map((actor, index) => (
+        <Actor key={index} name={actor} />
+      ))}
+
+      {singers.map((singer) => (
+        <Singer
+          key={singer.id}
+          id={singer.id}
+          name={singer.name}
+          age={singer.age}
+          genre={singer.genre}
+        />
+      ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
