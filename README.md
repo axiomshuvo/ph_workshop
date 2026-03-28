@@ -4,6 +4,8 @@ A simple project demonstrating the usage of a Countries API. Provides informatio
 
 ---
 
+## 🌍 [live Demo ](https://ph-workshop.pages.dev/)
+
 ## 📚 Table of Contents
 
 - [APIs Used](#-apis-used)
