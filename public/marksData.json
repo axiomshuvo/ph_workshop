@@ -1,0 +1,92 @@
+[
+  {
+    "studentId": 1,
+    "name": "Student 1",
+    "marks": {
+      "math": 85,
+      "english": 78,
+      "science": 92
+    }
+  },
+  {
+    "studentId": 2,
+    "name": "Student 2",
+    "marks": {
+      "math": 67,
+      "english": 74,
+      "science": 80
+    }
+  },
+  {
+    "studentId": 3,
+    "name": "Student 3",
+    "marks": {
+      "math": 90,
+      "english": 88,
+      "science": 95
+    }
+  },
+  {
+    "studentId": 4,
+    "name": "Student 4",
+    "marks": {
+      "math": 72,
+      "english": 65,
+      "science": 70
+    }
+  },
+  {
+    "studentId": 5,
+    "name": "Student 5",
+    "marks": {
+      "math": 88,
+      "english": 82,
+      "science": 91
+    }
+  },
+  {
+    "studentId": 6,
+    "name": "Student 6",
+    "marks": {
+      "math": 55,
+      "english": 60,
+      "science": 58
+    }
+  },
+  {
+    "studentId": 7,
+    "name": "Student 7",
+    "marks": {
+      "math": 76,
+      "english": 85,
+      "science": 79
+    }
+  },
+  {
+    "studentId": 8,
+    "name": "Student 8",
+    "marks": {
+      "math": 92,
+      "english": 90,
+      "science": 94
+    }
+  },
+  {
+    "studentId": 9,
+    "name": "Student 9",
+    "marks": {
+      "math": 64,
+      "english": 70,
+      "science": 68
+    }
+  },
+  {
+    "studentId": 10,
+    "name": "Student 10",
+    "marks": {
+      "math": 81,
+      "english": 77,
+      "science": 83
+    }
+  }
+]
