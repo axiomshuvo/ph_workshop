@@ -1,0 +1,202 @@
+[
+  {
+    "PlayerName": "Virat Kohli",
+    "PlayerCountry": "India",
+    "playertype": "Batsman",
+    "rating": 95,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm medium",
+    "price": 980,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170661/virat-kohli.jpg"
+  },
+  {
+    "PlayerName": "Rohit Sharma",
+    "PlayerCountry": "India",
+    "playertype": "Batsman",
+    "rating": 93,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm offbreak",
+    "price": 940,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170657/rohit-sharma.jpg"
+  },
+  {
+    "PlayerName": "Jos Buttler",
+    "PlayerCountry": "England",
+    "playertype": "Wicketkeeper-Batsman",
+    "rating": 92,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "None",
+    "price": 910,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170659/jos-buttler.jpg"
+  },
+  {
+    "PlayerName": "Ben Stokes",
+    "PlayerCountry": "England",
+    "playertype": "All-rounder",
+    "rating": 94,
+    "batstyle": "Left-hand bat",
+    "bowlingstyle": "Right-arm fast-medium",
+    "price": 970,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170658/ben-stokes.jpg"
+  },
+  {
+    "PlayerName": "Hardik Pandya",
+    "PlayerCountry": "India",
+    "playertype": "All-rounder",
+    "rating": 91,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm fast-medium",
+    "price": 900,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170660/hardik-pandya.jpg"
+  },
+  {
+    "PlayerName": "Rashid Khan",
+    "PlayerCountry": "Afghanistan",
+    "playertype": "Bowler",
+    "rating": 96,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm leg spin",
+    "price": 990,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170662/rashid-khan.jpg"
+  },
+  {
+    "PlayerName": "Jasprit Bumrah",
+    "PlayerCountry": "India",
+    "playertype": "Bowler",
+    "rating": 95,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm fast",
+    "price": 960,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170663/jasprit-bumrah.jpg"
+  },
+  {
+    "PlayerName": "David Warner",
+    "PlayerCountry": "Australia",
+    "playertype": "Batsman",
+    "rating": 90,
+    "batstyle": "Left-hand bat",
+    "bowlingstyle": "Right-arm leg break",
+    "price": 880,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170664/david-warner.jpg"
+  },
+  {
+    "PlayerName": "MS Dhoni",
+    "PlayerCountry": "India",
+    "playertype": "Wicketkeeper-Batsman",
+    "rating": 88,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm medium",
+    "price": 820,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170665/ms-dhoni.jpg"
+  },
+  {
+    "PlayerName": "KL Rahul",
+    "PlayerCountry": "India",
+    "playertype": "Wicketkeeper-Batsman",
+    "rating": 89,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "None",
+    "price": 850,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170666/kl-rahul.jpg"
+  },
+  {
+    "PlayerName": "Shubman Gill",
+    "PlayerCountry": "India",
+    "playertype": "Batsman",
+    "rating": 87,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm offbreak",
+    "price": 780,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170667/shubman-gill.jpg"
+  },
+  {
+    "PlayerName": "Glenn Maxwell",
+    "PlayerCountry": "Australia",
+    "playertype": "All-rounder",
+    "rating": 90,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm offbreak",
+    "price": 860,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170668/glenn-maxwell.jpg"
+  },
+  {
+    "PlayerName": "Andre Russell",
+    "PlayerCountry": "West Indies",
+    "playertype": "All-rounder",
+    "rating": 91,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm fast",
+    "price": 900,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170669/andre-russell.jpg"
+  },
+  {
+    "PlayerName": "Sunil Narine",
+    "PlayerCountry": "West Indies",
+    "playertype": "All-rounder",
+    "rating": 88,
+    "batstyle": "Left-hand bat",
+    "bowlingstyle": "Right-arm offbreak",
+    "price": 820,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170670/sunil-narine.jpg"
+  },
+  {
+    "PlayerName": "Trent Boult",
+    "PlayerCountry": "New Zealand",
+    "playertype": "Bowler",
+    "rating": 87,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Left-arm fast-medium",
+    "price": 750,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170671/trent-boult.jpg"
+  },
+  {
+    "PlayerName": "Mohammed Siraj",
+    "PlayerCountry": "India",
+    "playertype": "Bowler",
+    "rating": 85,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm fast",
+    "price": 700,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170672/mohammed-siraj.jpg"
+  },
+  {
+    "PlayerName": "Ruturaj Gaikwad",
+    "PlayerCountry": "India",
+    "playertype": "Batsman",
+    "rating": 84,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm offbreak",
+    "price": 650,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170673/ruturaj-gaikwad.jpg"
+  },
+  {
+    "PlayerName": "Ishan Kishan",
+    "PlayerCountry": "India",
+    "playertype": "Wicketkeeper-Batsman",
+    "rating": 83,
+    "batstyle": "Left-hand bat",
+    "bowlingstyle": "None",
+    "price": 600,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170674/ishan-kishan.jpg"
+  },
+  {
+    "PlayerName": "Deepak Chahar",
+    "PlayerCountry": "India",
+    "playertype": "Bowler",
+    "rating": 82,
+    "batstyle": "Right-hand bat",
+    "bowlingstyle": "Right-arm swing",
+    "price": 550,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170675/deepak-chahar.jpg"
+  },
+  {
+    "PlayerName": "Rinku Singh",
+    "PlayerCountry": "India",
+    "playertype": "Batsman",
+    "rating": 80,
+    "batstyle": "Left-hand bat",
+    "bowlingstyle": "Right-arm offbreak",
+    "price": 400,
+    "image": "https://static.cricbuzz.com/a/img/v1/152x152/i1/c170676/rinku-singh.jpg"
+  }
+]
