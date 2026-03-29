@@ -6,10 +6,9 @@ import Navbar from "./components/Navbar";
 import Players from "./components/Players";
 
 const fetchPlayers = async () => {
-  const res = await fetch("/data.json");
+  const res = await fetch("/data.json"); // ✅ correct path
   return res.json();
 };
-
 function App() {
   const playersPromise = fetchPlayers();
   return (
