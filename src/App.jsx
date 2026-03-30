@@ -1,4 +1,5 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
@@ -11,10 +12,11 @@ const fetchPlayers = async () => {
 };
 function App() {
   const playersPromise = fetchPlayers();
+  const [coin, setCoin] = useState(5000);
   return (
     <>
-      <div className="container mx-auto">
-        <Navbar />
+      <div className="container mx-auto space-y-20 ">
+        <Navbar coin={coin} />
         <Hero />
         <Suspense
           fallback={
@@ -30,10 +32,15 @@ function App() {
             </>
           }
         >
-          <Players playersPromise={playersPromise} />
+          <Players
+            playersPromise={playersPromise}
+            setCoin={setCoin}
+            coin={coin}
+          />
         </Suspense>
         <Footer />
       </div>
+      <ToastContainer position="top-right" autoClose={2000} />
     </>
   );
 }

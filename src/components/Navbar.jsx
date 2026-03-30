@@ -1,7 +1,7 @@
 import dollarImg from "../assets/dollar_1.png";
 import logo from "../assets/logo.png";
 
-export default function Navbar() {
+export default function Navbar({ coin }) {
   return (
     <>
       <div className="navbar">
@@ -67,7 +67,7 @@ export default function Navbar() {
             </li>
           </ul>
           <a className="btn ">
-            5000 Coin
+            {coin} Coin
             <img src={dollarImg} alt="" />
           </a>
         </div>
