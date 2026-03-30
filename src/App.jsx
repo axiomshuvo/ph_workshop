@@ -40,7 +40,7 @@ function App() {
         </Suspense>
         <Footer />
       </div>
-      <ToastContainer position="top-right" autoClose={2000} />
+      <ToastContainer position="top-center" theme="dark" autoClose={2000} />
     </>
   );
 }

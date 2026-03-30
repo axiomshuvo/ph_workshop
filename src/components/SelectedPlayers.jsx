@@ -1,42 +1,58 @@
 import { RiDeleteBinFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 export default function SelectedPlayers({
-  player,
   markPlayer,
   setMarkPlayer,
   coin,
   setCoin,
 }) {
-  console.log(player);
-  const { id, PlayerName, playertype, image } = player;
+  if (markPlayer.length === 0) {
+    return (
+      <div className="text-center text-gray-500 p-16">
+        No players selected yet.
+      </div>
+    );
+  }
 
-  const handleDeletePlayer = (id) => {
-    // Implement the logic to remove the player from the selected list
-    console.log(`Remove player with id: ${id}`);
-    const updatedPlayers = markPlayer.filter((p) => p.id !== id);
-    setMarkPlayer(updatedPlayers);
-    setCoin(coin + player.price); // Refund the coin when a player is removed
+  const handleDeletePlayer = (player) => {
+    setMarkPlayer(markPlayer.filter((p) => p.id !== player.id));
+    setCoin(coin + player.price);
+    toast.info(
+      `${player.PlayerName} removed from selection. Coins refunded! 💰`,
+    );
   };
 
   return (
     <>
-      <li key={id} className="list-row">
-        <div>
-          <img className="size-10 rounded-box" src={image} />
-        </div>
-        <div>
-          <div>{PlayerName}</div>
-          <div className="text-xs uppercase font-semibold opacity-60">
-            {playertype}
-          </div>
-        </div>
-        <button
-          onClick={() => handleDeletePlayer(id)}
-          className="btn btn-link text-red-500"
-        >
-          <RiDeleteBinFill />
-        </button>
-      </li>
+      <div className="grid grid-cols-1 ">
+        <ul className="list bg-base-100 rounded-box shadow-md">
+          {markPlayer.map((player) => (
+            <li key={player.id} className="list-row">
+              <div>
+                <img
+                  className="size-10 rounded-box"
+                  src={player.image}
+                  alt={player.PlayerName}
+                />
+              </div>
+              <div>
+                <div>{player.PlayerName}</div>
+                <div className="text-xs uppercase font-semibold opacity-60">
+                  {player.playertype}
+                </div>
+              </div>
+
+              <button
+                className="btn btn-ghost text-red-500"
+                onClick={() => handleDeletePlayer(player)}
+              >
+                <RiDeleteBinFill />
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

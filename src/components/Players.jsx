@@ -48,22 +48,16 @@ export default function Players({ playersPromise, setCoin, coin }) {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 ">
+        <div className="grid grid-cols-1">
           {markPlayer.length > 0 ? (
-            markPlayer.map((player) => (
-              <ul className="list bg-base-100 rounded-box shadow-md">
-                <SelectedPlayers
-                  key={player.id}
-                  player={player}
-                  coin={coin}
-                  setCoin={setCoin}
-                  markPlayer={markPlayer}
-                  setMarkPlayer={setMarkPlayer}
-                />
-              </ul>
-            ))
+            <SelectedPlayers
+              markPlayer={markPlayer}
+              setMarkPlayer={setMarkPlayer}
+              coin={coin}
+              setCoin={setCoin}
+            />
           ) : (
-            <p className="text-center text-2xl font-semibold opacity-70 border border-dashed border-2 border-gray-300 rounded-lg p-20">
+            <p className="text-center text-2xl font-semibold opacity-70 border-dashed border-2 border-gray-300 rounded-lg p-20">
               No players selected yet.
             </p>
           )}

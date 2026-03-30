@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaStar, FaUser } from "react-icons/fa";
 import { PiFlagDuotone } from "react-icons/pi";
 import { toast } from "react-toastify";
@@ -23,21 +22,26 @@ export default function SinglePlayer({
   } = player;
   // console.log(player);
 
-  const [isSeleted, setIsSeleted] = useState(false);
+  const isSelected = markPlayer.some((selected) => selected.id === id);
 
   const handleSelectPlayer = () => {
-    setIsSeleted(true);
+    if (isSelected) {
+      // deselect: remove player and refund coins
+      setMarkPlayer(markPlayer.filter((p) => p.id !== id));
+      setCoin(coin + price);
+      toast.info(`${PlayerName} removed from team.`);
+      return;
+    }
 
     const restCoin = coin - price;
-    if (restCoin >= 0) {
-      setCoin(restCoin);
-      toast.success(`${PlayerName} selected! 🎉`);
-    } else {
+    if (restCoin < 0) {
       toast.error(`You don't have enough coins to select ${PlayerName}. 😞`);
       return;
     }
 
+    setCoin(restCoin);
     setMarkPlayer([...markPlayer, player]);
+    toast.success(`${PlayerName} selected! 🎉`);
   };
 
   return (
@@ -74,12 +78,12 @@ export default function SinglePlayer({
         <div className="flex justify-between items-center text-xl">
           <span className="">Price : ${price}</span>
           <button
-            className="btn btn-accent "
+            className={`btn ${isSelected ? "btn-disabled btn-secondary" : "btn-accent"}`}
             type="button"
-            onClick={() => handleSelectPlayer()}
-            disabled={isSeleted}
+            onClick={handleSelectPlayer}
+            disabled={isSelected}
           >
-            {isSeleted ? "Selected" : " Choose Player"}
+            {isSelected ? "Selected" : "Choose Player"}
           </button>
         </div>
       </div>
