@@ -26,21 +26,18 @@ export default function SinglePlayer({
 
   const handleSelectPlayer = () => {
     if (isSelected) {
-      // deselect: remove player and refund coins
-      setMarkPlayer(markPlayer.filter((p) => p.id !== id));
-      setCoin(coin + price);
-      toast.info(`${PlayerName} removed from team.`);
       return;
     }
 
-    const restCoin = coin - price;
-    if (restCoin < 0) {
+    // const restCoin = ;
+
+    if (coin - price < 0) {
       toast.error(`You don't have enough coins to select ${PlayerName}. 😞`);
       return;
     }
 
-    setCoin(restCoin);
-    setMarkPlayer([...markPlayer, player]);
+    setMarkPlayer((prev) => [...prev, player]);
+    setCoin((prev) => prev - price);
     toast.success(`${PlayerName} selected! 🎉`);
   };
 
