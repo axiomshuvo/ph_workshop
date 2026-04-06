@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App";
 import Home from "./components/Home";
 import Root from "./components/Root";
+import ConsumerDetails from "./components/route/ConsumerDetails";
 import Consumers from "./components/route/Consumers";
 import Customers from "./components/route/Customers";
 import Spa from "./components/Spa";
@@ -43,6 +44,12 @@ const router = createBrowserRouter([
             <Consumers consumersPromise={consumersPromise} />
           </Suspense>
         ),
+      },
+      {
+        path: "consumers/:id",
+        loader: ({ params }) =>
+          fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`),
+        element: <ConsumerDetails />,
       },
     ],
   },
