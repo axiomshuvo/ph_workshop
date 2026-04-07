@@ -4,9 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App";
 import Home from "./components/Home";
 import Root from "./components/Root";
+import BlogPost from "./components/route/BlogPost";
 import ConsumerDetails from "./components/route/ConsumerDetails";
 import Consumers from "./components/route/Consumers";
 import Customers from "./components/route/Customers";
+import SingleBlogPost from "./components/route/SingleBlogPost";
 import Spa from "./components/Spa";
 import "./index.css";
 
@@ -50,6 +52,17 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`),
         element: <ConsumerDetails />,
+      },
+      {
+        path: "blog",
+        loader: () => fetch("https://jsonplaceholder.typicode.com/posts"),
+        element: <BlogPost />,
+      },
+      {
+        path: "blog/:id",
+        loader: ({ params }) =>
+          fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`),
+        element: <SingleBlogPost />,
       },
     ],
   },
