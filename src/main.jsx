@@ -64,8 +64,16 @@ const router = createBrowserRouter([
           fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`),
         element: <SingleBlogPost />,
       },
+      // {
+      //   path: "*",
+      //   element: <h2>404 Not Found</h2>,
+      // },
     ],
   },
+  // {
+  //   path: "*",
+  //   element: <h2>404 Not Found</h2>,
+  // },
   // {
   //   path: "/spa",
   //   element: <div>This is the spa page</div>,

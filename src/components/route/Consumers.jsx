@@ -1,5 +1,5 @@
 import { use } from "react";
-// import { NavLink } from "react-router";
+import { NavLink } from "react-router";
 
 export default function Consumers({ consumersPromise }) {
   const consumers = use(consumersPromise);
@@ -15,8 +15,8 @@ export default function Consumers({ consumersPromise }) {
       <ul>
         {consumers.map((consumer) => (
           <li style={style} key={consumer.id}>
-            <a href={`/consumers/${consumer.id}`}>{consumer.name}</a>
-            {/* <NavLink to={`/consumers/${consumer.id}`}>{consumer.name}</NavLink> */}
+            {/* <a href={`/consumers/${consumer.id}`}>{consumer.name}</a> */}
+            <NavLink to={`/consumers/${consumer.id}`}>{consumer.name}</NavLink>
           </li>
         ))}
       </ul>
