@@ -1,14 +1,37 @@
-import { Form, Link, Outlet } from "react-router";
+import { useEffect } from "react";
+import {
+  Form,
+  Link,
+  NavLink,
+  Outlet,
+  useNavigation,
+  useSubmit,
+} from "react-router";
 import { getContacts, type ContactRecord } from "../data";
 import type { Route } from "./+types/sidebar";
 
-export async function loader() {
-  const contacts = await getContacts();
-  return { contacts };
+export async function loader({ request }: Route.LoaderArgs) {
+  const url = new URL(request.url);
+  const q = url.searchParams.get("q");
+  const contacts = await getContacts(q);
+  return { contacts, q };
 }
 
 export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
-  const { contacts } = loaderData;
+  const { contacts, q } = loaderData;
+  const navigation = useNavigation();
+  const submit = useSubmit();
+  const searching =
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has("q");
+
+  useEffect(() => {
+    const searchField = document.getElementById("q");
+    if (searchField instanceof HTMLInputElement) {
+      searchField.value = q || "";
+    }
+  }, [q]);
+
   return (
     <>
       <div id="sidebar">
@@ -16,9 +39,20 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
           <Link to="about">React Router Contacts</Link>
         </h1>
         <div>
-          <Form id="search-form" role="search">
+          <Form
+            id="search-form"
+            role="search"
+            onChange={(e) => {
+              const isFirstSearch = q == null;
+              submit(e.currentTarget, {
+                replace: !isFirstSearch,
+              });
+            }}
+          >
             <input
               aria-label="Search contacts"
+              className="loading"
+              defaultValue={q || ""}
               id="q"
               name="q"
               placeholder="Search"
@@ -39,7 +73,12 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
             <ul>
               {contacts.map((contact: ContactRecord) => (
                 <li key={contact.id}>
-                  <Link to={`/contacts/${contact.id}`}>
+                  <NavLink
+                    className={({ isActive, isPending }) =>
+                      isActive ? "active" : isPending ? "pending" : ""
+                    }
+                    to={`/contacts/${contact.id}`}
+                  >
                     {contact.first || contact.last ? (
                       <>
                         {contact.first} {contact.last}
@@ -48,14 +87,19 @@ export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
                       <i>No Name</i>
                     )}
                     {contact.favorite && <span>★</span>}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>
           )}
         </nav>
       </div>
-      <div id="detail">
+      <div
+        className={
+          navigation.state === "loading" && !searching ? "loading" : " "
+        }
+        id="detail"
+      >
         <Outlet />
       </div>
     </>
