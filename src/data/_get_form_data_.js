@@ -8,4 +8,6 @@
  *
  * #5 custom hook [ input filed এর value state দিয়ে control করা হয়, custom hook useInputFields ব্যবহার করে control করা হয় ]
  *
+ * # props drilling [ props এর মাধ্যমে value পাস করা হয় ]
+ * #props drilling solution [ context api এর মাধ্যমে value পাস করা হয় ]
  */

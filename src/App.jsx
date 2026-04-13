@@ -1,6 +1,5 @@
 import "./App.css";
-
-import ProductManagement from "./ProductManagement/ProductManagement";
+import FamilyTree from "./components/FamilyTree";
 
 function App() {
   return (
@@ -16,7 +15,9 @@ function App() {
       <br />
       <UncontrolledField /> */}
       <br />
-      <ProductManagement />
+      {/* <ProductManagement /> */}
+      <br />
+      <FamilyTree />
     </>
   );
 }
