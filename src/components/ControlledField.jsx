@@ -3,7 +3,11 @@ import { useState } from "react";
 export default function ControlledField() {
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (pass.length < 6) {
+      setError("Password must be at least 6 characters long");
+    } else {
+      setError("Password is valid");
+    }
     const formData = new FormData(e.target);
     console.log(formData);
     //     const email = formData.get("email");
@@ -12,9 +16,16 @@ export default function ControlledField() {
   };
   const [pass, setPass] = useState("");
 
+  const [error, setError] = useState();
+
   const handlePassOnChage = (e) => {
     console.log(e.target.value);
-    //     setPass(e.target.value);
+    setPass(e.target.value);
+    //     if (pass.length < 6) {
+    //       setError("Password must be at least 6 characters long");
+    //     } else {
+    //       setError("Password is valid");
+    //     }
   };
 
   return (
@@ -41,6 +52,8 @@ export default function ControlledField() {
         <br />
         <input type="submit" value="Submit" />
       </form>
+      <br />
+      <small>{error && <p style={{ color: "red" }}>{error}</p>}</small>
     </div>
   );
 }
