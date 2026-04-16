@@ -10,4 +10,8 @@
  *
  * # props drilling [ props এর মাধ্যমে value পাস করা হয় ]
  * #props drilling solution [ context api এর মাধ্যমে value পাস করা হয় ]
+ *
+ * #6 useContext [ context api এর মাধ্যমে value পাস করা হয়, useContext hook ব্যবহার করে value নেওয়া হয় ]
+ *
+ *
  */
