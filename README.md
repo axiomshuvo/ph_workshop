@@ -24,6 +24,7 @@ Book Vibe is a React-based book management web application where users can explo
 
 ## 📂 Project Structure
 
+```bash
 src/
 ├── components/
 ├── pages/
@@ -31,6 +32,7 @@ src/
 ├── assets/
 ├── App.jsx
 └── main.jsx
+```
 
 ## 🔗 Pages
 
@@ -42,15 +44,13 @@ src/
 
 ## ⚙️ Installation
 
-git clone https://github.com/your-username/book-vibe.git  
-cd book-vibe  
-npm install  
+npm install
 npm run dev
 
 ## 📦 Dependencies
 
-react-router-dom  
-tailwindcss  
+react-router-dom
+tailwindcss
 daisyui
 
 ## 🧠 How It Works
