@@ -54,7 +54,6 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  {" "}
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -73,7 +72,7 @@ export default function Navbar() {
             <h2 className="cursor-pointer text-xl">Book Vibe</h2>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+            <ul className="menu menu-horizontal px-1 gap-2 ">{links}</ul>
           </div>
           <div className="navbar-end gap-2">
             <Link to="/sign-in" className="btn bg-[#23BE0A] text-white">
