@@ -1,4 +1,5 @@
 import { use } from "react";
+import BookCard from "../ui/BookCard";
 
 const booksPromise = fetch("/src/data/booksData.json").then((res) =>
   res.json(),
@@ -12,39 +13,10 @@ export default function AllBooks() {
       <section className="container mx-auto text-center py-10 ">
         <h2 className="text-6xl font-bold ">Books</h2>
 
-        <div className="booklist grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10 mt-10">
+        <div className="booklist grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-10 mt-10 justify-items-center ">
           {books.map((book) => {
-            console.log(book);
-            return (
-              <div
-                key={book.bookId}
-                className=" single-book card border border-gray-300  shadow-md rounded-xl"
-              >
-                <figure className="p-8 ">
-                  <img
-                    src={book.image}
-                    alt={book.title}
-                    className="rounded-xl"
-                  />
-                </figure>
-                <div className="card-body text-left ">
-                  <div className="tags flex gap-2">
-                    {book.tags.map((tag) => (
-                      <div className="badge badge-soft badge-success">
-                        {tag}
-                      </div>
-                    ))}
-                  </div>
-                  <h2 className="card-title">{book.title}</h2>
-                  <p>
-                    by: {book.author} <br /> {book.year}
-                  </p>
-                  <div className="card-actions">
-                    <button className="btn btn-primary">Buy Now</button>
-                  </div>
-                </div>
-              </div>
-            );
+            //     console.log(book);
+            return <BookCard key={book.bookId} book={book} />;
           })}
         </div>
       </section>
