@@ -1,11 +1,20 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import {
+  addReadListToLocalDB,
+  getAllReadListFromLocalDB,
+} from "../utils/localDB";
 
 export const BookContext = createContext();
 
 export default function BookProvider({ children }) {
   const [storeBooks, setStoreBooks] = useState([]);
   const [wishList, setWishList] = useState([]);
+
+  useEffect(() => {
+    const getReadListfromLocalDB = getAllReadListFromLocalDB();
+    console.log(getReadListfromLocalDB, "Readlist from local DB in context");
+  }, []);
 
   const handleMarkAsRead = (currentBook) => {
     //check if the book is already marked as read, if yes, show a message and return
@@ -21,6 +30,8 @@ export default function BookProvider({ children }) {
     // }
     // Logic to mark the book as read
     // console.log(`Book with ID ${currentBook} marked as read.`);
+
+    addReadListToLocalDB(currentBook);
 
     //  logic ---
     const isExistBook = storeBooks.find((book) => {

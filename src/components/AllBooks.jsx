@@ -1,9 +1,7 @@
 import { use } from "react";
 import BookCard from "../ui/BookCard";
 
-const booksPromise = fetch("../../src/data/booksData.json").then((res) =>
-  res.json(),
-);
+const booksPromise = fetch("/booksData.json").then((res) => res.json());
 
 export default function AllBooks() {
   const books = use(booksPromise);
