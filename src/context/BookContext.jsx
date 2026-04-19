@@ -57,10 +57,10 @@ export default function BookProvider({ children }) {
       return;
     }
 
-    const isExistBook = storeBooks.find((book) => {
+    const isExistBook = wishList.find((book) => {
       return book.bookId === currentBook.bookId;
     });
-    console.log(storeBooks);
+    console.log(wishList);
 
     if (isExistBook) {
       toast.warning(

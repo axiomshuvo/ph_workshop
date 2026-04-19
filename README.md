@@ -2,6 +2,8 @@
 
 Book Vibe is a React-based book management web application where users can explore books, view detailed information, and organize them into Readlist and Watchlist. This project demonstrates the use of React Router, Data API, and modern UI design using DaisyUI.
 
+## [Live Demo](https://vivebook.netlify.app/)
+
 ## 🚀 Features
 
 - Browse all available books
