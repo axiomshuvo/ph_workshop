@@ -62,10 +62,10 @@ export default function BookProvider({ children }) {
   };
 
   const handleWishList = (currentBook) => {
-    addWishListToLocalDB(currentBook);
     const isExistInReadBooks = storeBooks.find((book) => {
       return book.bookId === currentBook.bookId;
     });
+    addWishListToLocalDB(currentBook);
 
     if (isExistInReadBooks) {
       toast.warning(
