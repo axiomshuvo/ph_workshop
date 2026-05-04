@@ -1,0 +1,59 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Wireless Noise-Cancelling Headphones",
+      "price": 4999,
+      "category": "Electronics",
+      "stock": 25,
+      "rating": 4.5,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",
+      "description": "Premium wireless headphones with active noise cancellation, 30hr battery life, and crystal clear audio.",
+      "brand": "SoundMax"
+    },
+    {
+      "id": 2,
+      "name": "Running Jordan  Sneakers Pro",
+      "price": 2499,
+      "category": "Footwear",
+      "stock": 40,
+      "rating": 4.3,
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400",
+      "description": "Lightweight and breathable running shoes with superior cushioning and grip for all terrains.",
+      "brand": "SwiftStride"
+    },
+    {
+      "id": 3,
+      "name": "Stainless Steel Water Bottle",
+      "price": 799,
+      "category": "Lifestyle",
+      "stock": 100,
+      "rating": 4.7,
+      "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400",
+      "description": "Double-walled insulated bottle that keeps drinks cold for 24hrs and hot for 12hrs. BPA-free.",
+      "brand": "HydroLife"
+    },
+    {
+      "id": 4,
+      "name": "Mechanical Gaming Keyboard",
+      "price": 3299,
+      "category": "Electronics",
+      "stock": 15,
+      "rating": 4.6,
+      "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400",
+      "description": "RGB backlit mechanical keyboard with tactile switches, anti-ghosting, and aluminum body.",
+      "brand": "KeyForce"
+    },
+    {
+      "id": 5,
+      "name": "Leather Crossbody Bag",
+      "price": 1899,
+      "category": "Fashion",
+      "stock": 30,
+      "rating": 4.4,
+      "image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400",
+      "description": "Genuine leather crossbody bag with multiple compartments, adjustable strap, and premium zipper.",
+      "brand": "UrbanCarry"
+    }
+  ]
+}
