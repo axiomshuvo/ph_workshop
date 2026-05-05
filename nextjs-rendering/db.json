@@ -55,5 +55,117 @@
       "description": "Genuine leather crossbody bag with multiple compartments, adjustable strap, and premium zipper.",
       "brand": "UrbanCarry"
     }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "The Silent Forest",
+      "author": "Emma Hart",
+      "price": 12.99,
+      "genre": "Mystery",
+      "rating": 4.5,
+      "image": "https://picsum.photos/seed/book1/300/400",
+      "description": "A gripping mystery about a quiet town and a secret hidden deep in the forest.",
+      "publisher": "North Star Press"
+    },
+    {
+      "id": 2,
+      "title": "Learning Python Fast",
+      "author": "Daniel Brooks",
+      "price": 24.5,
+      "genre": "Technology",
+      "rating": 4.7,
+      "image": "https://picsum.photos/seed/book2/300/400",
+      "description": "A beginner-friendly guide to learning Python programming with practical examples.",
+      "publisher": "CodeHouse Publishing"
+    },
+    {
+      "id": 3,
+      "title": "Ocean of Stars",
+      "author": "Maya Collins",
+      "price": 15.75,
+      "genre": "Science Fiction",
+      "rating": 4.3,
+      "image": "https://picsum.photos/seed/book3/300/400",
+      "description": "An exciting space adventure across distant planets and unknown galaxies.",
+      "publisher": "Galaxy Books"
+    },
+    {
+      "id": 4,
+      "title": "The Art of Focus",
+      "author": "Ryan Hale",
+      "price": 10.99,
+      "genre": "Self-Help",
+      "rating": 4.1,
+      "image": "https://picsum.photos/seed/book4/300/400",
+      "description": "Simple techniques to improve concentration, productivity, and daily discipline.",
+      "publisher": "Mindset Media"
+    },
+    {
+      "id": 5,
+      "title": "Ancient Kingdoms",
+      "author": "Laura Stone",
+      "price": 18.25,
+      "genre": "History",
+      "rating": 4.4,
+      "image": "https://picsum.photos/seed/book5/300/400",
+      "description": "A detailed look at powerful ancient civilizations and their lasting influence.",
+      "publisher": "Heritage House"
+    },
+    {
+      "id": 6,
+      "title": "Love in Autumn",
+      "author": "Sarah Miles",
+      "price": 9.99,
+      "genre": "Romance",
+      "rating": 4.0,
+      "image": "https://picsum.photos/seed/book6/300/400",
+      "description": "A warm romantic story about second chances, friendship, and love.",
+      "publisher": "Rosewood Press"
+    },
+    {
+      "id": 7,
+      "title": "Business Made Simple",
+      "author": "Mark Evans",
+      "price": 20.0,
+      "genre": "Business",
+      "rating": 4.6,
+      "image": "https://picsum.photos/seed/book7/300/400",
+      "description": "A practical guide to understanding business basics, strategy, and growth.",
+      "publisher": "Summit Publishing"
+    },
+    {
+      "id": 8,
+      "title": "Cooking at Home",
+      "author": "Nina Patel",
+      "price": 16.5,
+      "genre": "Cooking",
+      "rating": 4.8,
+      "image": "https://picsum.photos/seed/book8/300/400",
+      "description": "Easy and delicious recipes for everyday meals using simple ingredients.",
+      "publisher": "Kitchen Table Books"
+    },
+    {
+      "id": 9,
+      "title": "The Last Detective",
+      "author": "James Reed",
+      "price": 11.49,
+      "genre": "Crime",
+      "rating": 4.2,
+      "image": "https://picsum.photos/seed/book9/300/400",
+      "description": "A crime thriller following a detective solving one final dangerous case.",
+      "publisher": "Black Raven Books"
+    },
+    {
+      "id": 10,
+      "title": "Mindful Living",
+      "author": "Olivia Grant",
+      "price": 13.99,
+      "genre": "Wellness",
+      "rating": 4.5,
+      "image": "https://picsum.photos/seed/book10/300/400",
+      "description": "A calming guide to mindfulness, healthy habits, and balanced living.",
+      "publisher": "Harmony Press"
+    }
   ]
 }

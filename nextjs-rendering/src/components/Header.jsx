@@ -12,6 +12,9 @@ export default function Header() {
       <li>
         <Link href="/products">Products</Link>
       </li>
+      <li>
+        <Link href="/books">Books</Link>
+      </li>
     </>
   );
 

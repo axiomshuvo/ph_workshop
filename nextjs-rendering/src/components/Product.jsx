@@ -13,12 +13,17 @@ export default function Product({ product }) {
 
   return (
     <div>
-      <div className="card bg-base-100 card-sm shadow-sm">
+      <div className="card bg-emerald-900 card-sm shadow-sm text-center">
         <div className="card-body">
-          <h2 className="card-title">{name}</h2>
+          <h2 className="text-xl">{name}</h2>
           <p>{description}</p>
-          <div className="justify-end card-actions">
-            <button className="btn btn-primary">Buy Now</button>
+          <p>Price: ${price}</p>
+          <p>Category: {category}</p>
+          <p>Stock: {stock}</p>
+          <p>Rating: {rating} / 5</p>
+          <p>Brand: {brand}</p>
+          <div className="justify-center card-actions">
+            <button className="btn btn-xs btn-warning">Buy Now</button>
           </div>
         </div>
       </div>
