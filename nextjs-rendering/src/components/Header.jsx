@@ -15,6 +15,9 @@ export default function Header() {
       <li>
         <Link href="/books">Books</Link>
       </li>
+      <li>
+        <Link href="/tasks">Tasks</Link>
+      </li>
     </>
   );
 
