@@ -1,6 +1,7 @@
-import TaskCard from "@/components/TaskCard";
 import { getTasks } from "@/lib/tasks";
-import { AddNewTask } from "./AddNewTask";
+import { Button } from "@heroui/react";
+import Link from "next/link";
+import TaskCard from "./TaskCard";
 
 export default async function Tasks() {
   const tasks = await getTasks();
@@ -9,8 +10,11 @@ export default async function Tasks() {
       <h1>Task List</h1>
       <p>{tasks.length} tasks available</p>
       <p>
-        <AddNewTask />
+        <Link href="/tasks/new" className="text-blue-500 hover:underline">
+          <Button variant="secondary">Add New Task</Button>
+        </Link>
       </p>
+      <p>{/* <AddNewTask AddATask={AddATask} /> */}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {tasks.map((task) => (
           <TaskCard key={task.id} task={task} />

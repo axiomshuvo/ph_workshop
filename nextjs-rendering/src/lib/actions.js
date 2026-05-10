@@ -1,16 +1,52 @@
-export default async function AddATask({ formData }) {
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { postTask } from "./tasks";
+
+export default async function AddATask(formData) {
   "use server";
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const phone = formData.get("phone");
-  const company = formData.get("company");
-  const message = formData.get("message");
+  //   const title = formData.get("title");
+  //   const description = formData.get("description");
+  //   const status = formData.get("status");
+  //   const priority = formData.get("priority");
+  //   const date = formData.get("date");
+  //   const tags = formData.getAll("tags");
+  //   const newTask = {
+  //     title,
+  //     description,
+  //     status,
+  //     priority,
+  //     date,
+  //     tags,
+  //   };
 
-  console.log({ name, email, phone, company, message });
+  //   single value     → formData.get("name")
+  // multiple values  → formData.getAll("name")
+  // full object      → Object.fromEntries(formData)
+  // loop             → formData.entries() / formData.forEach()
+  // check exists     → formData.has("name")
 
-  return (
-    <div>
-      <h1>Task Added</h1>
-    </div>
-  );
+  const newTask = Object.fromEntries(formData.entries());
+
+  console.log("Adding new task:", newTask);
+  const res = await postTask(newTask);
+  if (res.ok) {
+    revalidatePath("/tasks"); // Revalidate the tasks page to show the new task
+  }
+
+  console.log(res);
+  return res;
+}
+
+export async function addNewPageTask(formdata) {
+  "use server";
+  const newTask = Object.fromEntries(formdata.entries());
+  console.log("Adding new task from page:", newTask);
+  const res = await postTask(newTask);
+  if (res.ok) {
+    revalidatePath("/tasks"); // Revalidate the tasks page to show the new task
+    redirect("/tasks"); // Redirect to the tasks page after adding the new task
+  }
+  console.log(res);
+  alert("added new task");
+  return res;
 }

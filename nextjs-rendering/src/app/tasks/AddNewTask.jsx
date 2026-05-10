@@ -1,15 +1,25 @@
 "use client";
 
-import { CirclePlus } from "@gravity-ui/icons";
-import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+import { Calendar, CirclePlus } from "@gravity-ui/icons";
+import {
+  Button,
+  DateField,
+  Input,
+  Label,
+  ListBox,
+  Modal,
+  Select,
+  Surface,
+  TextField,
+} from "@heroui/react";
 
-export function AddNewTask() {
+export function AddNewTask({ AddATask }) {
   return (
     <Modal>
       <Button variant="secondary">Add New Task</Button>
       <Modal.Backdrop>
         <Modal.Container placement="auto">
-          <Modal.Dialog className="sm:max-w-md">
+          <Modal.Dialog className="sm:max-w-xl">
             <Modal.CloseTrigger />
             <Modal.Header>
               <Modal.Icon className="bg-accent-soft text-accent-soft-foreground">
@@ -22,40 +32,106 @@ export function AddNewTask() {
             </Modal.Header>
             <Modal.Body className="p-6">
               <Surface variant="default">
-                <form className="flex flex-col gap-4">
-                  <TextField className="w-full" name="name" type="text">
-                    <Label>Name</Label>
-                    <Input placeholder="Enter your name" />
+                <form action={AddATask} className="flex flex-col gap-4">
+                  <TextField className="w-full" name="title" type="text">
+                    <Label>Title</Label>
+                    <Input placeholder="Enter task title" />
                   </TextField>
 
-                  <TextField className="w-full" name="email" type="email">
-                    <Label>Email</Label>
-                    <Input placeholder="Enter your email" />
+                  <TextField className="w-full" name="description" type="text">
+                    <Label>Description</Label>
+                    <Input placeholder="Enter task description" />
                   </TextField>
 
-                  <TextField className="w-full" name="phone" type="tel">
-                    <Label>Phone</Label>
-                    <Input placeholder="Enter your phone number" />
+                  <Select
+                    className="w-[256px]"
+                    name="status"
+                    placeholder="Select one"
+                  >
+                    <Label>Status</Label>
+                    <Select.Trigger>
+                      <Select.Value />
+                      <Select.Indicator />
+                    </Select.Trigger>
+                    <Select.Popover>
+                      <ListBox>
+                        <ListBox.Item id="in-progress" textValue="In Progress">
+                          In Progress
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                        <ListBox.Item id="pending" textValue="Pending">
+                          Pending
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                        <ListBox.Item id="complete" textValue="Complete">
+                          Complete
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                      </ListBox>
+                    </Select.Popover>
+                  </Select>
+
+                  <Select
+                    className="w-[256px]"
+                    name="priority"
+                    placeholder="Select one"
+                  >
+                    <Label>Priority</Label>
+                    <Select.Trigger>
+                      <Select.Value />
+                      <Select.Indicator />
+                    </Select.Trigger>
+                    <Select.Popover>
+                      <ListBox>
+                        <ListBox.Item id="high" textValue="High">
+                          High
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                        <ListBox.Item id="medium" textValue="Medium">
+                          Medium
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                        <ListBox.Item id="low" textValue="Low">
+                          Low
+                          <ListBox.ItemIndicator />
+                        </ListBox.Item>
+                      </ListBox>
+                    </Select.Popover>
+                  </Select>
+
+                  <TextField className="w-full" name="assignTo" type="text">
+                    <Label>Assign To</Label>
+                    <Input placeholder="Enter assignee name" />
                   </TextField>
 
-                  <TextField className="w-full" name="company">
-                    <Label>Company</Label>
-                    <Input placeholder="Enter your company name" />
+                  <TextField className="w-full" name="tags" type="text">
+                    <Label>Tags</Label>
+                    <Input placeholder="Enter tags (comma separated)" />
                   </TextField>
 
-                  <TextField className="w-full" name="message">
-                    <Label>Message</Label>
-                    <Input placeholder="Enter your message" />
-                  </TextField>
+                  <DateField className="w-[256px]" name="date">
+                    <Label>Date</Label>
+                    <DateField.Group>
+                      <DateField.Prefix>
+                        <Calendar className="size-4 text-muted" />
+                      </DateField.Prefix>
+                      <DateField.Input>
+                        {(segment) => <DateField.Segment segment={segment} />}
+                      </DateField.Input>
+                    </DateField.Group>
+                  </DateField>
+
+                  <Modal.Footer>
+                    <Button slot="close" variant="secondary">
+                      Cancel
+                    </Button>
+                    <Button slot="close" type="submit">
+                      Submit Task
+                    </Button>
+                  </Modal.Footer>
                 </form>
               </Surface>
             </Modal.Body>
-            <Modal.Footer>
-              <Button slot="close" variant="secondary">
-                Cancel
-              </Button>
-              <Button type="submit">Submit Task</Button>
-            </Modal.Footer>
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>
