@@ -1,36 +1,197 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Better Auth — Learn as You Build 🚀
 
-## Getting Started
+A hands-on Next.js project for learning [Better Auth](https://www.better-auth.com/) in a simple, practical, and fun way 🎉
 
-First, run the development server:
+Built by [Pradipta Sarker](https://github.com/axiomshuvo) 💻
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## What is Better Auth? 🤔
+
+Better Auth is a framework-agnostic authentication library that gives you:
+
+- Email & password auth out of the box ✉️
+- Session management 🍪
+- Database adapters (MongoDB, Prisma, Drizzle, etc.) 🗄️
+- OAuth providers (Google, GitHub, etc.) 🔐
+- A client SDK for React (`useSession`, `signIn`, `signUp`) ⚛️
+
+Think of it as a self-hosted alternative to Clerk or NextAuth, but with a cleaner API and first-class TypeScript support. Clean, flexible, and developer-friendly 😎
+
+---
+
+## Project Structure 🧭
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   └── auth/
+│   │       └── [...all]/
+│   │           └── route.js      ← Catch-all API route for Better Auth
+│   └── auth/
+│       └── signup/
+│           └── page.jsx          ← Signup UI using authClient
+├── lib/
+│   ├── auth.js                   ← Server-side auth config (betterAuth)
+│   └── auth-client.js            ← Client-side SDK (createAuthClient)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## How It Works ⚙️
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Server Config — `src/lib/auth.js` 🖥️
 
-## Learn More
+```js
+import { betterAuth } from "better-auth";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { MongoClient } from "mongodb";
 
-To learn more about Next.js, take a look at the following resources:
+const client = new MongoClient(process.env.AUTH_DB_URI);
+const db = client.db("better-auth-db");
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+export const auth = betterAuth({
+  emailAndPassword: { enabled: true },
+  database: mongodbAdapter(db, { client }),
+});
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `betterAuth()` is the core config object — lives on the **server only**
+- `mongodbAdapter` connects to your MongoDB database
+- `AUTH_DB_URI` is your MongoDB connection string from `.env.local`
 
-## Deploy on Vercel
+### 2. API Route — `src/app/api/auth/[...all]/route.js` 🌐
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```js
+import { auth } from "@/lib/auth";
+import { toNextJsHandler } from "better-auth/next-js";
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+export const { POST, GET } = toNextJsHandler(auth);
+```
+
+- This single file handles **all** auth routes automatically
+- Better Auth exposes endpoints like `/api/auth/sign-up/email`, `/api/auth/sign-in/email`, `/api/auth/session`, etc.
+- `toNextJsHandler` adapts the Better Auth handler to Next.js App Router format
+
+### 3. Client SDK — `src/lib/auth-client.js` 📱
+
+```js
+import { createAuthClient } from "better-auth/react";
+
+export const authClient = createAuthClient({
+  baseURL: process.env.BETTER_AUTH_URL,
+});
+
+export const { signIn, signUp, useSession } = createAuthClient();
+```
+
+- `createAuthClient` is for the **browser** — never import `auth.js` in client components
+- `useSession()` — React hook to read the current session
+- `signIn.email()` / `signUp.email()` — call these from form submit handlers
+
+### 4. Signup Page — `src/app/auth/signup/page.jsx` ✍️
+
+```js
+const { data, error } = await authClient.signUp.email({
+  email: userData.email,
+  password: userData.password,
+  name: userData.name,
+  callbackURL: "/",
+});
+```
+
+- Always `"use client"` — client components only
+- Destructure `{ data, error }` from every auth call
+- `callbackURL` is where the user is redirected after successful signup
+
+---
+
+## Environment Variables 🔑
+
+Create a `.env.local` file in the project root:
+
+```env
+AUTH_DB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/
+BETTER_AUTH_URL=http://localhost:3000
+BETTER_AUTH_SECRET=your-secret-key-here
+```
+
+| Variable             | Purpose                                           |
+| -------------------- | ------------------------------------------------- |
+| `AUTH_DB_URI`        | MongoDB connection string                         |
+| `BETTER_AUTH_URL`    | Base URL of your app (used for redirects/cookies) |
+| `BETTER_AUTH_SECRET` | Secret for signing sessions (keep this private!)  |
+
+---
+
+## Getting Started 🏁
+
+```bash
+npm install
+npm run dev
+```
+
+Then open [http://localhost:3000/auth/signup](http://localhost:3000/auth/signup) and start testing the flow ✨
+
+---
+
+## Common Errors & Fixes 🛠️
+
+### 500 Internal Server Error on Auth Routes 🚨
+
+**Symptom:** Requests to `/api/auth/*` return a 500 error. Not fun, but usually easy to fix 😅
+
+**Most common cause — MongoDB Atlas Network Access is blocking your IP.**
+
+#### Fix (Development) 🧪
+
+1. Go to [MongoDB Atlas](https://cloud.mongodb.com) → your cluster → **Network Access**
+2. Click **Add IP Address**
+3. Add your **current local IP** (not `0.0.0.0/0`)
+   - Find your IP: run `curl ifconfig.me` in terminal
+4. Save and wait ~30 seconds for Atlas to apply the change
+
+> **Do NOT use `0.0.0.0/0` (Allow Access from Anywhere)** — this is a serious security risk that exposes your database to the entire internet. Add only the IP you actually need ✅
+
+#### Fix (Production / Deployment) 🚀
+
+If you're deploying to Vercel, Railway, Render, etc.:
+
+1. Find the **outbound IP addresses** of your deployment platform (each platform documents these)
+2. Add those specific IPs to MongoDB Atlas Network Access
+3. Or use a dedicated static IP service (e.g., Quotaguard, Fixie) for a stable IP
+
+#### Other causes of 500 errors 👀
+
+| Cause                                               | Fix                                                  |
+| --------------------------------------------------- | ---------------------------------------------------- |
+| `AUTH_DB_URI` missing or wrong                      | Double-check `.env.local`, restart dev server        |
+| `BETTER_AUTH_SECRET` not set                        | Add it to `.env.local`                               |
+| MongoDB connection string missing the database name | Append `/your-db-name` to the URI                    |
+| Importing `auth.js` in a client component           | Only import `auth-client.js` in `"use client"` files |
+
+---
+
+## Key Concepts to Remember 🧠
+
+| Concept            | File                         | Note                                            |
+| ------------------ | ---------------------------- | ----------------------------------------------- |
+| Server auth config | `lib/auth.js`                | Server only — never import in client components |
+| Client SDK         | `lib/auth-client.js`         | Browser only — use in `"use client"` components |
+| API handler        | `api/auth/[...all]/route.js` | One file handles all auth endpoints             |
+| Session hook       | `useSession()`               | Returns `{ data: session, isPending }`          |
+
+---
+
+## Learn More 📚
+
+- [Better Auth Docs](https://www.better-auth.com/docs)
+- [Better Auth + Next.js Guide](https://www.better-auth.com/docs/integrations/next-js)
+- [MongoDB Atlas Network Access](https://www.mongodb.com/docs/atlas/security/ip-access-list/)
+
+---
+
+## Author ❤️
+
+Made by [Pradipta Sarker](https://github.com/axiomshuvo) 🌟

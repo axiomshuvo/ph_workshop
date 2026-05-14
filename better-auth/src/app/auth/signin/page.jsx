@@ -11,40 +11,31 @@ import {
   TextField,
 } from "@heroui/react";
 
-export default function SignUpPage() {
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const userData = Object.fromEntries(formData.entries());
-    console.log(userData);
+const onSubmit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  const userData = Object.fromEntries(formData.entries());
+  console.log(userData);
+  const { data, error } = await authClient.signIn.email({
+    email: userData.email, // required
+    password: userData.password, // required
+    rememberMe: true,
+    callbackURL: "/dashboard",
+  });
 
-    const { data, error } = await authClient.signUp.email({
-      email: userData.email,
-      password: userData.password,
-      name: userData.name,
-      callbackURL: "/",
-    });
-    console.log(`Signup response:`, { data, error });
+  if (error) {
+    alert("Error signing in:", error.message);
+  } else {
+    alert("Sign-in successful:", data);
+  }
+};
 
-    if (error) {
-      alert(`Signup failed: ${error.message}`);
-    } else {
-      alert(
-        `Signup successful! Please check your email to verify your account.`,
-      );
-    }
-  };
-
+export default function SignInPage() {
   return (
     <div className="Container mx-auto py-20">
-      <h2 className="text-3xl font-bold mb-5">Please Signup </h2>
+      <h2 className="text-3xl font-bold mb-5">Please Sign In </h2>
 
       <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
-        <TextField isRequired name="name" type="text">
-          <Label>Your Name</Label>
-          <Input placeholder="Type your full name" />
-        </TextField>
-
         <TextField
           isRequired
           name="email"
