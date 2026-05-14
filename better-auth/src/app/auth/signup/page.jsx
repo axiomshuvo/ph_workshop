@@ -36,10 +36,10 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="Container mx-auto py-20">
-      <h2 className="text-3xl font-bold mb-5">Please Signup </h2>
+    <div className="container mx-auto py-20">
+      <h2 className="text-3xl font-bold mb-5 text-center">Please Signup </h2>
 
-      <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+      <Form className="flex w-96 mx-auto flex-col gap-4" onSubmit={onSubmit}>
         <TextField isRequired name="name" type="text">
           <Label>Your Name</Label>
           <Input placeholder="Type your full name" />

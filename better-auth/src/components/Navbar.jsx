@@ -1,17 +1,28 @@
 "use client";
 
+import { signOut, useSession } from "@/lib/auth-client";
 import { Button, Link } from "@heroui/react";
 import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Dashboard", href: "/dashboard" },
-  { label: "Etch", href: "/etch" },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+
+  const { data, isPending } = useSession();
+
+  if (isPending) {
+    return <div>Loading ...</div>;
+  }
+  const user = data?.user;
+
+  console.log("Session data:", data);
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur">
@@ -44,21 +55,32 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button
-            variant="secondary"
-            size="sm"
-            onPress={() => router.push("/auth/signin")}
-          >
-            Sign In
-          </Button>
+          {user ? (
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-zinc-700">Hello, {user.email}</span>
+              <Button size="sm" variant="outline" onClick={() => signOut()}>
+                Sign Out
+              </Button>
+            </div>
+          ) : (
+            <>
+              <Button
+                variant="secondary"
+                size="sm"
+                onPress={() => router.push("/auth/signin")}
+              >
+                Sign In
+              </Button>
 
-          <Button
-            size="sm"
-            className="bg-green-600 text-white hover:bg-green-700"
-            onPress={() => router.push("/auth/signup")}
-          >
-            Sign Up
-          </Button>
+              <Button
+                size="sm"
+                className="bg-green-600 text-white hover:bg-green-700"
+                onPress={() => router.push("/auth/signup")}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </div>
       </nav>
     </header>

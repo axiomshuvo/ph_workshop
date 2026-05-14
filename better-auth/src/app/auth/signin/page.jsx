@@ -1,41 +1,44 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
+import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
 import {
   Button,
   Description,
   FieldError,
   Form,
-  Input,
+  InputGroup,
   Label,
   TextField,
 } from "@heroui/react";
+import { useState } from "react";
 
 const onSubmit = async (e) => {
   e.preventDefault();
   const formData = new FormData(e.currentTarget);
   const userData = Object.fromEntries(formData.entries());
-  console.log(userData);
+
   const { data, error } = await authClient.signIn.email({
-    email: userData.email, // required
-    password: userData.password, // required
+    email: userData.email,
+    password: userData.password,
     rememberMe: true,
     callbackURL: "/dashboard",
   });
 
   if (error) {
-    alert("Error signing in:", error.message);
+    alert(error.message);
   } else {
-    alert("Sign-in successful:", data);
+    alert("Sign-in successful");
   }
 };
 
 export default function SignInPage() {
-  return (
-    <div className="Container mx-auto py-20">
-      <h2 className="text-3xl font-bold mb-5">Please Sign In </h2>
+  const [isVisible, setIsVisible] = useState(false);
 
-      <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+  return (
+    <div className="container mx-auto py-20">
+      <h2 className="mb-5 text-center text-3xl font-bold">Please Sign In</h2>
+
+      <Form className="mx-auto flex w-96 flex-col gap-4" onSubmit={onSubmit}>
         <TextField
           isRequired
           name="email"
@@ -48,7 +51,9 @@ export default function SignInPage() {
           }}
         >
           <Label>Email</Label>
-          <Input placeholder="john@example.com" />
+          <InputGroup>
+            <InputGroup.Input placeholder="john@example.com" />
+          </InputGroup>
           <FieldError />
         </TextField>
 
@@ -56,22 +61,33 @@ export default function SignInPage() {
           isRequired
           minLength={8}
           name="password"
-          type="password"
           validate={(value) => {
-            if (value.length < 8) {
+            if (value.length < 8)
               return "Password must be at least 8 characters";
-            }
-            if (!/[A-Z]/.test(value)) {
+            if (!/[A-Z]/.test(value))
               return "Password must contain at least one uppercase letter";
-            }
-            if (!/[0-9]/.test(value)) {
+            if (!/[0-9]/.test(value))
               return "Password must contain at least one number";
-            }
             return null;
           }}
         >
           <Label>Password</Label>
-          <Input placeholder="Enter your password" />
+          <InputGroup>
+            <InputGroup.Input
+              type={isVisible ? "text" : "password"}
+              placeholder="Enter your password"
+            />
+            <InputGroup.Suffix>
+              <button
+                type="button"
+                aria-label={isVisible ? "Hide password" : "Show password"}
+                onClick={() => setIsVisible((v) => !v)}
+                className="flex items-center px-3 text-[--muted] hover:text-[--foreground] transition-colors"
+              >
+                {isVisible ? <EyeSlash /> : <Eye />}
+              </button>
+            </InputGroup.Suffix>
+          </InputGroup>
           <Description>
             Must be at least 8 characters with 1 uppercase and 1 number
           </Description>
