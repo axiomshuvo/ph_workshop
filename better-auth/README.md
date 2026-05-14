@@ -30,12 +30,32 @@ src/
 │   │       └── [...all]/
 │   │           └── route.js      ← Catch-all API route for Better Auth
 │   └── auth/
+│       ├── signin/
+│       │   └── page.jsx          ← Sign in screen
 │       └── signup/
 │           └── page.jsx          ← Signup UI using authClient
+│   ├── about/
+│   │   └── page.jsx              ← About page
+│   ├── blog/
+│   │   └── page.jsx              ← Blog page
+│   ├── dashboard/
+│   │   └── page.jsx              ← Protected dashboard
+│   └── page.js                   ← Home page
 ├── lib/
 │   ├── auth.js                   ← Server-side auth config (betterAuth)
 │   └── auth-client.js            ← Client-side SDK (createAuthClient)
+├── components/
+│   └── Navbar.jsx                ← App navigation + sign out
 ```
+
+## Routes ✨
+
+- `/` - redesigned home page
+- `/auth/signin` - sign in form with password toggle
+- `/auth/signup` - sign up form with password toggle
+- `/dashboard` - protected session-aware dashboard
+- `/about` - product and project overview
+- `/blog` - sample article listing page
 
 ---
 
@@ -80,15 +100,15 @@ export const { POST, GET } = toNextJsHandler(auth);
 import { createAuthClient } from "better-auth/react";
 
 export const authClient = createAuthClient({
-  baseURL: process.env.BETTER_AUTH_URL,
+  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
 });
 
-export const { signIn, signUp, useSession } = createAuthClient();
+export const { signIn, signUp, signOut, useSession } = authClient;
 ```
 
 - `createAuthClient` is for the **browser** — never import `auth.js` in client components
 - `useSession()` — React hook to read the current session
-- `signIn.email()` / `signUp.email()` — call these from form submit handlers
+- `signIn.email()` / `signUp.email()` / `signOut()` — call these from form submit handlers
 
 ### 4. Signup Page — `src/app/auth/signup/page.jsx` ✍️
 
@@ -109,19 +129,21 @@ const { data, error } = await authClient.signUp.email({
 
 ## Environment Variables 🔑
 
-Create a `.env.local` file in the project root:
+Create a `.env` or `.env.local` file in the project root:
 
 ```env
 AUTH_DB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/
-BETTER_AUTH_URL=http://localhost:3000
+NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
 BETTER_AUTH_SECRET=your-secret-key-here
 ```
 
-| Variable             | Purpose                                           |
-| -------------------- | ------------------------------------------------- |
-| `AUTH_DB_URI`        | MongoDB connection string                         |
-| `BETTER_AUTH_URL`    | Base URL of your app (used for redirects/cookies) |
-| `BETTER_AUTH_SECRET` | Secret for signing sessions (keep this private!)  |
+| Variable                      | Purpose                                          |
+| ----------------------------- | ------------------------------------------------ |
+| `AUTH_DB_URI`                 | MongoDB connection string                        |
+| `NEXT_PUBLIC_BETTER_AUTH_URL` | Base URL of your app for client auth requests    |
+| `BETTER_AUTH_SECRET`          | Secret for signing sessions (keep this private!) |
+
+For production, change `NEXT_PUBLIC_BETTER_AUTH_URL` to your live domain, for example `https://your-app.com`.
 
 ---
 
@@ -133,6 +155,13 @@ npm run dev
 ```
 
 Then open [http://localhost:3000/auth/signup](http://localhost:3000/auth/signup) and start testing the flow ✨
+
+To test the full experience:
+
+1. Sign up at `/auth/signup`
+2. Sign in at `/auth/signin`
+3. Open `/dashboard` to confirm the protected route works
+4. Check `/about` and `/blog` to see the redesigned content pages
 
 ---
 

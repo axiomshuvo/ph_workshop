@@ -1,7 +1,7 @@
 "use client";
 
 import { signOut, useSession } from "@/lib/auth-client";
-import { Button, Link } from "@heroui/react";
+import { Button, Chip, Link } from "@heroui/react";
 import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
@@ -25,18 +25,18 @@ export default function Navbar() {
   console.log("Session data:", data);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/20 bg-zinc-950/80 text-white backdrop-blur-xl">
       <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4">
         <div className="flex items-center">
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight text-black no-underline"
+            className="text-xl font-semibold tracking-tight text-white no-underline"
           >
-            BetterAuth
+            BetterAuth Studio
           </Link>
         </div>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
 
@@ -44,8 +44,10 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium no-underline transition-colors ${
-                  isActive ? "text-green-600" : "text-zinc-700 hover:text-black"
+                className={`rounded-full px-4 py-2 text-sm font-medium no-underline transition-colors ${
+                  isActive
+                    ? "bg-emerald-400/15 text-emerald-200"
+                    : "text-zinc-300 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -57,8 +59,18 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           {user ? (
             <div className="flex items-center gap-3">
-              <span className="text-sm text-zinc-700">Hello, {user.email}</span>
-              <Button size="sm" variant="outline" onClick={() => signOut()}>
+              <Chip className="border border-white/10 bg-white/5 text-zinc-200">
+                {user.email}
+              </Chip>
+              <Button
+                size="sm"
+                variant="secondary"
+                className="bg-white text-zinc-950 hover:bg-zinc-100"
+                onPress={async () => {
+                  await signOut();
+                  router.replace("/");
+                }}
+              >
                 Sign Out
               </Button>
             </div>
@@ -67,6 +79,7 @@ export default function Navbar() {
               <Button
                 variant="secondary"
                 size="sm"
+                className="bg-white/10 text-white hover:bg-white/15"
                 onPress={() => router.push("/auth/signin")}
               >
                 Sign In
@@ -74,7 +87,7 @@ export default function Navbar() {
 
               <Button
                 size="sm"
-                className="bg-green-600 text-white hover:bg-green-700"
+                className="bg-emerald-500 text-white hover:bg-emerald-400"
                 onPress={() => router.push("/auth/signup")}
               >
                 Sign Up
