@@ -1,27 +1,37 @@
-"use client";
-
-import { useSession } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
 import { Button, Card, Chip, Link, Surface } from "@heroui/react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function DashBoard() {
-  const router = useRouter();
-  const { data, isPending } = useSession();
-  const user = data?.user;
+export default async function DashBoard() {
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (!isPending && !user) {
-      router.replace("/auth/signin");
-    }
-  }, [isPending, user, router]);
+  // const { data, isPending } = useSession();
+  // const user = data?.user;
+  // useEffect(() => {
+  //   if (!isPending && !user) {
+  //     router.replace("/auth/signin");
+  //   }
+  // }, [isPending, user, router]);
 
-  if (isPending) {
-    return <div>Loading ...</div>;
-  }
+  // if (isPending) {
+  //   return <div>Loading ...</div>;
+  // }
+
+  // if (!user) {
+  //   return null;
+  // }
+
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  console.log("Session data:", session);
+
+  const user = session?.user;
 
   if (!user) {
-    return null;
+    redirect("/auth/signin");
   }
 
   return (
@@ -39,7 +49,7 @@ export default function DashBoard() {
                 Protected area
               </Chip>
               <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-                Welcome back, {user.email}
+                {/* Welcome back, {user.email} */}
               </h1>
               <p className="max-w-2xl text-base leading-7 text-zinc-600">
                 This dashboard now feels like part of the product: clearer
@@ -51,11 +61,14 @@ export default function DashBoard() {
             <div className="flex flex-wrap gap-3">
               <Button
                 className="bg-zinc-950 text-white hover:bg-zinc-800"
-                onPress={() => router.push("/")}
+                // onPress={() => router.push("/")}
               >
                 Back home
               </Button>
-              <Button variant="secondary" onPress={() => router.push("/blog")}>
+              <Button
+                variant="secondary"
+                // onPress={() => router.push("/blog")}
+              >
                 Read blog
               </Button>
             </div>

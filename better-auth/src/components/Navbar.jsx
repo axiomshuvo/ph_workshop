@@ -6,23 +6,24 @@ import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Dashboard", href: "/dashboard" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ initialUser = null }) {
   const pathname = usePathname();
   const router = useRouter();
 
   const { data, isPending } = useSession();
+  const user = isPending ? initialUser : (data?.user ?? null);
 
   if (isPending) {
     return <div>Loading ...</div>;
   }
-  const user = data?.user;
 
-  console.log("Session data:", data);
+  const visibleNavItems = user
+    ? [...navItems, { label: "Dashboard", href: "/dashboard" }]
+    : navItems;
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/20 bg-zinc-950/80 text-white backdrop-blur-xl">
@@ -37,7 +38,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          {navItems.map((item) => {
+          {visibleNavItems.map((item) => {
             const isActive = pathname === item.href;
 
             return (
@@ -60,7 +61,7 @@ export default function Navbar() {
           {user ? (
             <div className="flex items-center gap-3">
               <Chip className="border border-white/10 bg-white/5 text-zinc-200">
-                {user.email}
+                {user.name || user.email}
               </Chip>
               <Button
                 size="sm"
@@ -68,6 +69,7 @@ export default function Navbar() {
                 className="bg-white text-zinc-950 hover:bg-zinc-100"
                 onPress={async () => {
                   await signOut();
+                  router.refresh();
                   router.replace("/");
                 }}
               >
