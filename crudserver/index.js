@@ -29,13 +29,25 @@ async function run() {
     const database = client.db("simpleCrud");
     const users = database.collection("users");
 
-    //search query
+    // create user
+    app.post("/users", async (req, res) => {
+      // get user from client
+      const user = req.body;
+      console.log("new user 2 be inserted", user);
+      // insert user to database
+      const result = await users.insertOne(user);
+      // send result to client
+      res.send(result);
+    });
 
+    // get all users
     app.get("/users", async (req, res) => {
       const cursor = users.find({});
       const result = await cursor.toArray();
       res.send(result);
     });
+
+    //search query
 
     app.get("/users/:id", async (req, res) => {
       //       console.log(req.params);
@@ -45,6 +57,26 @@ async function run() {
       res.send(result);
     });
 
+    // update user
+    app.patch("/users/:id", async (req, res) => {
+      const id = req.params.id;
+
+      const filter = { _id: new ObjectId(id) };
+      const modifiedUser = req.body;
+
+      const updatedDocument = {
+        $set: {
+          name: modifiedUser.name,
+          email: modifiedUser.email,
+          phone: modifiedUser.phone,
+        },
+      };
+
+      const result = await users.updateOne(filter, updatedDocument);
+      res.send(result);
+    });
+
+    // delete user
     app.delete("/users/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };

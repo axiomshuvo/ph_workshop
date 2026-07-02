@@ -1,6 +1,6 @@
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 
-export default function AddUserModal() {
+export default function AddUserModal({ createUserAction }) {
   return (
     <div>
       <Modal>
@@ -14,7 +14,10 @@ export default function AddUserModal() {
               </Modal.Header>
               <Modal.Body className="p-6">
                 <Surface variant="default">
-                  <form className="flex flex-col gap-4">
+                  <form
+                    className="flex flex-col gap-4"
+                    action={createUserAction}
+                  >
                     <TextField
                       className="w-full"
                       name="name"
@@ -42,15 +45,17 @@ export default function AddUserModal() {
                       <Label>Role</Label>
                       <Input placeholder="Enter your role" />
                     </TextField>
+                    <Modal.Footer>
+                      <Button slot="close" variant="secondary">
+                        Cancel
+                      </Button>
+                      <Button type="submit" slot="close">
+                        Add User
+                      </Button>
+                    </Modal.Footer>
                   </form>
                 </Surface>
               </Modal.Body>
-              <Modal.Footer>
-                <Button slot="close" variant="secondary">
-                  Cancel
-                </Button>
-                <Button slot="close">Add User</Button>
-              </Modal.Footer>
             </Modal.Dialog>
           </Modal.Container>
         </Modal.Backdrop>

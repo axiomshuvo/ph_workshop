@@ -7,7 +7,7 @@ export default async function SingleUserDetails({ params }) {
   return (
     <div>
       <h1>Single User Details</h1>
-      <p>Name: {user.username}</p>
+      <p>Name: {user?.username ?? user?.name}</p>
       <p>Email: {user.email}</p>
     </div>
   );

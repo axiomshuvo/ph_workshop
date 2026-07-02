@@ -23,7 +23,7 @@ export function UsersTable({ users, deleteUserAction }) {
             <Table.Body>
               {users.map((user) => (
                 <Table.Row key={user._id}>
-                  <Table.Cell>{user.username}</Table.Cell>
+                  <Table.Cell> {user?.username || user?.name}</Table.Cell>
                   <Table.Cell>{user.role}</Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
                   <Table.Cell>
@@ -35,7 +35,7 @@ export function UsersTable({ users, deleteUserAction }) {
                         </Button>
                       </Link>
 
-                      <Link href={`/users/{user._id}/edit`}>
+                      <Link href={`/users/${user._id}/edit`}>
                         <Button variant="secondary">
                           Edit <Gear />
                         </Button>
