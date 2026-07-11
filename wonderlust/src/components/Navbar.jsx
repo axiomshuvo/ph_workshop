@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../public/assets/Wanderlast.png";
+import logo from "../../public/assets/Wanderlast.png";
 export default function Navbar() {
   const NavLinks = (
     <>
@@ -8,10 +8,13 @@ export default function Navbar() {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="/about">About</Link>
+        <Link href="/destinations">Destinations</Link>
       </li>
       <li>
-        <Link href="/contact">Contact</Link>
+        <Link href="/my-bookings">My Bookings</Link>
+      </li>
+      <li>
+        <Link href="/add-destination">Add Destination</Link>
       </li>
     </>
   );
