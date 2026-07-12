@@ -8,7 +8,7 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = process.env.MONGODB_URI;
 
 app.get("/", (req, res) => {
@@ -40,6 +40,22 @@ async function run() {
         res.json(destinations);
       } catch (error) {
         res.status(500).send("Error fetching destinations");
+      }
+    });
+
+    app.get("/destinations/:id", async (req, res) => {
+      try {
+        const { id } = req.params;
+        const destination = await destinationCollection.findOne({
+          _id: new ObjectId(id),
+        });
+        if (destination) {
+          res.json(destination);
+        } else {
+          res.status(404).send("Destination not found");
+        }
+      } catch (error) {
+        res.status(500).send("Error fetching destination");
       }
     });
 

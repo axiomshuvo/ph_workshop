@@ -1,5 +1,7 @@
-import { Calendar, MapPin } from "@gravity-ui/icons";
+import { ArrowUpRightFromSquare, Calendar, MapPin } from "@gravity-ui/icons";
+import { Button } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function DestinationCard({ destination }) {
   console.log(destination);
@@ -31,6 +33,11 @@ export default function DestinationCard({ destination }) {
           {destination.duration}
         </span>
       </p>
+      <Link href={`/destinations/${destination._id}`}>
+        <Button className="mt-2" view="outlined " size="m">
+          <ArrowUpRightFromSquare /> View Details
+        </Button>
+      </Link>
     </div>
   );
 }
