@@ -43,6 +43,7 @@ async function run() {
       }
     });
 
+    // get a single destination by id from the collection
     app.get("/destinations/:id", async (req, res) => {
       try {
         const { id } = req.params;
@@ -59,6 +60,25 @@ async function run() {
       }
     });
 
+    // update a destination by id in the collection
+    app.patch("/destinations/:id", async (req, res) => {
+      try {
+        const { id } = req.params;
+        const updatedDestination = req.body;
+        const result = await destinationCollection.updateOne(
+          { _id: new ObjectId(id) },
+          { $set: updatedDestination },
+        );
+        if (result.matchedCount > 0) {
+          res.json(result);
+        } else {
+          res.status(404).send("Destination not found");
+        }
+      } catch (error) {
+        res.status(500).send("Error updating destination");
+      }
+    });
+
     // insert a new destination into the collection
     app.post("/destinations", async (req, res) => {
       try {
@@ -68,6 +88,23 @@ async function run() {
         console.log(result);
       } catch (error) {
         res.status(500).send("Error adding destination");
+      }
+    });
+
+    // delete a destination by id from the collection
+    app.delete("/destinations/:id", async (req, res) => {
+      try {
+        const { id } = req.params;
+        const result = await destinationCollection.deleteOne({
+          _id: new ObjectId(id),
+        });
+        if (result.deletedCount > 0) {
+          res.json(result);
+        } else {
+          res.status(404).send("Destination not found");
+        }
+      } catch (error) {
+        res.status(500).send("Error deleting destination");
       }
     });
   } finally {
