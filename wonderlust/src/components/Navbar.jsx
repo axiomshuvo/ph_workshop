@@ -20,9 +20,9 @@ export default function Navbar() {
   );
 
   const routeLinks = [
-    { name: "Profile", path: "/Profile" },
-    { name: "Login", path: "/Login" },
-    { name: "Signup", path: "/Signup" },
+    { name: "Profile", path: "/profile" },
+    { name: "Login", path: "/login" },
+    { name: "Signup", path: "/signup" },
   ];
 
   return (
