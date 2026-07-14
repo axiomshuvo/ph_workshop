@@ -9,36 +9,34 @@ import {
   Form,
   Input,
   Label,
-  Separator,
   TextField,
   toast,
 } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
-export default function SignUpPage() {
+export default function LoginPage() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const user = Object.fromEntries(formData.entries());
-    // console.log("Form Data:", user);
+    console.log("Form Data:", user);
 
-    const { data, error } = await authClient.signUp.email({
-      email: user.email, // user email address
-      password: user.password, // user password -> min 8 characters by default
-      name: user.fullName, // user display name
-      image: user.imgUrl, // User image URL (optional)
-      // callbackURL: "/", // A URL to redirect to after the user verifies their email (optional)
+    const { data, error } = await authClient.signIn.email({
+      email: user.email, // required
+      password: user.password, // required
+      //rememberMe: true,
+      // callbackURL: "https://example.com/callback",
     });
-    console.log("Signup Response:", { data, error });
     if (data) {
       toast.success(
-        "Sign up successful! Please check your email to verify your account.",
+        `Login successful! Welcome back, ${data.user.name || "User"}!`,
       );
       redirect("/");
     }
     if (error) {
-      toast.danger(error.message || "An error occurred during sign up.");
+      toast.danger(error.message || "An error occurred during login.");
     }
   };
 
@@ -56,45 +54,14 @@ export default function SignUpPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-gray-100 p-4">
       <Card>
-        <Card.Header>
-          <Card.Title>Sign Up</Card.Title>
+        <Card.Header className="flex flex-col items-center gap-2">
+          <Card.Title className="text-3xl">Login</Card.Title>
           <Card.Description>
-            Please fill in the form below to create an account.
+            Please enter your email and password to log in.
           </Card.Description>
         </Card.Header>
         <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
           <Card.Content>
-            {/* Full Name  */}
-            <TextField
-              isRequired
-              name="fullName"
-              validate={(value) => {
-                if (!value) {
-                  return "Please enter your full name";
-                }
-                return null;
-              }}
-            >
-              <Label>Full Name</Label>
-              <Input placeholder="John Doe" />
-              <FieldError />
-            </TextField>
-            {/* img url */}
-            <TextField
-              isRequired
-              name="imgUrl"
-              type="url"
-              validate={(value) => {
-                if (!/^https?:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(value)) {
-                  return "Please enter a valid image URL (jpg, jpeg, png, gif)";
-                }
-                return null;
-              }}
-            >
-              <Label>Profile Image URL</Label>
-              <Input placeholder="https://example.com/image.jpg" />
-              <FieldError />
-            </TextField>
             {/* Email  */}
             <TextField
               isRequired
@@ -141,22 +108,16 @@ export default function SignUpPage() {
           </Card.Content>
           <Card.Footer className="">
             <div className="flex w-full justify-between">
-              <Button type="reset" variant="secondary">
-                Reset
-              </Button>
+              <Link href="#" className="text-sm text-blue-500 hover:underline">
+                Forget password?
+              </Link>
               <Button type="submit">
                 <Check />
-                Create Account
+                Login
               </Button>
             </div>
           </Card.Footer>
         </Form>
-        <div className="flex overflow-hidden justify-center items-center gap-2">
-          <Separator />
-          <div className="whitespace-nowrap">Or Sign Up with</div>
-          <Separator />
-        </div>
-
         <div className="flex   flex-col gap-3">
           <Button
             className="w-full"
