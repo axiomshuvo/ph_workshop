@@ -13,7 +13,7 @@ export default function Navbar() {
     // refetch, //refetch the session
   } = authClient.useSession();
 
-  console.log("Session Data:", session);
+  // console.log("Session Data:", session);
 
   const signOut = async () => {
     const { error } = await authClient.signOut();
@@ -73,11 +73,7 @@ export default function Navbar() {
               {/* Display user avatar if session exists */}
               {link?.imgurl && (
                 <Avatar>
-                  <Avatar.Image
-                    alt={session.user.name}
-                    priority
-                    src={link.imgurl}
-                  />
+                  <Avatar.Image alt={session.user.name} src={link.imgurl} />
                   <Avatar.Fallback>
                     {session.user.name.slice(0, 2).toUpperCase()}
                   </Avatar.Fallback>

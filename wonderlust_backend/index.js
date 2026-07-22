@@ -32,6 +32,7 @@ async function run() {
 
     const db = client.db("wonderlust");
     const destinationCollection = db.collection("destinations");
+    const bookingCollection = db.collection("bookings");
 
     // get all destinations from the collection
     app.get("/destinations", async (req, res) => {
@@ -105,6 +106,54 @@ async function run() {
         }
       } catch (error) {
         res.status(500).send("Error deleting destination");
+      }
+    });
+
+    // insert a new booking into the collection
+    app.post("/bookings", async (req, res) => {
+      try {
+        const booking = req.body;
+        const result = await bookingCollection.insertOne(booking);
+        res.json(result);
+        console.log(result);
+      } catch (error) {
+        res.status(500).send("Error adding booking");
+      }
+    });
+
+    // get all bookings from the collection
+    app.get("/bookings/:userId", async (req, res) => {
+      try {
+        const { userId } = req.params;
+        const bookings = await bookingCollection
+          .find({
+            userId: userId,
+          })
+          .toArray();
+        res.status(200).json(bookings);
+      } catch (error) {
+        res.status(500).json({
+          success: false,
+          message: "Error fetching bookings",
+        });
+      }
+    });
+
+    // cancel or delete a booking by id from the collection
+
+    app.delete("/bookings/:id", async (req, res) => {
+      try {
+        const { id } = req.params;
+        const result = await bookingCollection.deleteOne({
+          _id: new ObjectId(id),
+        });
+        if (result.deletedCount > 0) {
+          res.json(result);
+        } else {
+          res.status(404).send("Booking not found");
+        }
+      } catch (error) {
+        res.status(500).send("Error deleting booking");
       }
     });
   } finally {

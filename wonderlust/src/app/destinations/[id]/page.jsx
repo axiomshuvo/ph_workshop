@@ -1,5 +1,7 @@
+import BookingCard from "@/components/BookingCard";
 import { DeleteDestination } from "@/components/DeleteDestination";
 import { EditModal } from "@/components/EditModal";
+import { Card } from "@heroui/react";
 import Image from "next/image";
 
 export default async function SingleDestinationDetails({ params }) {
@@ -32,11 +34,38 @@ export default async function SingleDestinationDetails({ params }) {
             {destination.destinationName}
           </h2>
           <p className="">{destination.description}</p>
-          <p className="">Country: {destination.country}</p>
-          <p>Category: {destination.category}</p>
-          <p>Price: ${destination.price}</p>
-          <p>Duration: {destination.duration}</p>
-          <p>Departure Date: {destination.departureDate}</p>
+          <div className="flex justify-between my-10 text-lg">
+            <div className="italic">
+              <p className="">
+                Country:
+                <span className="not-italic font-semibold">
+                  {destination.country}
+                </span>
+              </p>
+              <p>
+                Category:{" "}
+                <span className="not-italic font-semibold">
+                  {destination.category}
+                </span>
+              </p>
+              <p>
+                Duration:{" "}
+                <span className="not-italic font-semibold">
+                  {destination.duration}
+                </span>
+              </p>
+              <p>
+                Departure Date:{" "}
+                <span className="not-italic font-semibold">
+                  {destination.departureDate}
+                </span>
+              </p>
+            </div>
+
+            <Card className="w-1/3 text-center p-4">
+              <BookingCard destination={destination} />
+            </Card>
+          </div>
         </div>
       </div>
     </div>
