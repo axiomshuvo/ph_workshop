@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { PencilToSquare } from "@gravity-ui/icons";
 import {
   Button,
@@ -33,13 +34,16 @@ export function EditModal({ destination }) {
     const destinationData = Object.fromEntries(formData.entries());
     // console.log("Form Data:", destinationData);
 
+    const { data: tokenData } = await authClient.token();
+
     try {
       const response = await fetch(
-        `http://localhost:5001/destinations/${destination._id}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/destinations/${destination._id}`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenData?.token}`, // Include the token in the Authorization header
           },
           body: JSON.stringify(destinationData),
         },

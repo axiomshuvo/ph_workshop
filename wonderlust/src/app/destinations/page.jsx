@@ -1,7 +1,7 @@
 import DestinationCard from "@/components/DestinationCard";
 
 export default async function Destinations() {
-  const res = await fetch("http://localhost:5001/destinations");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destinations`);
   const destinations = await res.json();
 
   // console.log("Fetched Destinations:", destinations);

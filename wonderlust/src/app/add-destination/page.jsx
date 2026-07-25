@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   FieldError,
@@ -9,7 +10,9 @@ import {
   Select,
   TextArea,
   TextField,
+  toast,
 } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 export default function AddDestinationPage() {
   const onSubmit = async (e) => {
@@ -17,18 +20,31 @@ export default function AddDestinationPage() {
     const formData = new FormData(e.target);
     const destinationData = Object.fromEntries(formData.entries());
 
-    console.log("Form Data Submitted:", destinationData);
+    // console.log("Form Data Submitted:", destinationData);
 
-    const res = await fetch("http://localhost:5001/destinations", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
+    const { data: tokenData } = await authClient.token();
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/destinations`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${tokenData?.token}`, // Include the token in the Authorization header
+        },
+        body: JSON.stringify(destinationData),
       },
-      body: JSON.stringify(destinationData),
-    });
+    );
 
     const data = await res.json();
     console.log("Server Response:", data);
+
+    if (res.ok) {
+      toast.success("Destination added successfully!");
+      redirect("/destinations"); // Redirect to the destinations page after successful addition
+    } else {
+      toast.error(`Error: ${data.message || "Failed to add destination."}`);
+    }
   };
 
   return (

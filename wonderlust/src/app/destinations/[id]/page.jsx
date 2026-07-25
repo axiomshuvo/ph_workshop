@@ -15,11 +15,14 @@ export default async function SingleDestinationDetails({ params }) {
 
   console.log("Token in SingleDestinationDetails:", token);
 
-  const res = await fetch(`http://localhost:5001/destinations/${id}`, {
-    headers: {
-      authorization: `Bearer ${token}`, // Include the token in the Authorization header
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/destinations/${id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      },
     },
-  });
+  );
   const destination = await res.json();
   //console.log("Fetched Destination:", destination);
 

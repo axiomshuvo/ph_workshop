@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Xmark } from "@gravity-ui/icons";
 import { AlertDialog, Button, toast } from "@heroui/react";
 import { redirect } from "next/navigation";
@@ -6,14 +7,18 @@ import { redirect } from "next/navigation";
 export default function BookingDeleteAlert({ bookingId }) {
   const handleCancelBooking = async (e) => {
     e.preventDefault();
-    console.log("Cancel Booking clicked for bookingId:", bookingId);
+    // console.log("Cancel Booking clicked for bookingId:", bookingId);
+
+    const { data: tokenData } = await authClient.token();
+
     try {
       const response = await fetch(
-        `http://localhost:5001/bookings/${bookingId}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenData?.token}`, // Include the token in the Authorization header
           },
         },
       );

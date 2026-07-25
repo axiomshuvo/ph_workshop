@@ -8,14 +8,20 @@ export default async function MyBookings({}) {
   const session = await auth.api.getSession({
     headers: await headers(), // you need to pass the headers object.
   });
-  console.log("Session Data:", session);
+  // console.log("Session Data:", session);
+
+  const { token } = await auth.api.getToken({
+    headers: await headers(), // you need to pass the headers object.
+  });
+  // console.log("Token Data:", token);
 
   const req = await fetch(
-    `http://localhost:5001/bookings/${session?.user.id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${session?.user.id}`,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
       },
     },
   );

@@ -9,7 +9,6 @@ import {
   Label,
   toast,
 } from "@heroui/react";
-import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export default function BookingCard({ destination }) {
@@ -22,15 +21,15 @@ export default function BookingCard({ destination }) {
 
   // console.log("Session Data:", session);
 
-  const signOut = async () => {
-    const { error } = await authClient.signOut();
-    if (error) {
-      console.error("Error signing out:", error);
-    } else {
-      toast.warning("Successfully signed out!");
-      redirect("/"); // Redirect to login page after sign out
-    }
-  };
+  // const signOut = async () => {
+  //   const { error } = await authClient.signOut();
+  //   if (error) {
+  //     console.error("Error signing out:", error);
+  //   } else {
+  //     toast.warning("Successfully signed out!");
+  //     redirect("/"); // Redirect to login page after sign out
+  //   }
+  // };
 
   const { _id, destinationName, country, price, category, duration, imageUrl } =
     destination;
@@ -53,12 +52,16 @@ export default function BookingCard({ destination }) {
       imageUrl,
       departureDate: new Date(departureDate),
     };
-    console.log("Booking Data:", bookingData);
+    // console.log("Booking Data:", bookingData);
 
-    const res = await fetch("http://localhost:5001/bookings", {
+    const { data: tokenData } = await authClient.token();
+    // console.log("Token Data:", tokenData);
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${tokenData?.token}`, // Include the token in the Authorization header
       },
       body: JSON.stringify(bookingData),
     });

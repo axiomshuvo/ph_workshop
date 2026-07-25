@@ -18,7 +18,9 @@ app.get("/", (req, res) => {
 
 // jwt keyset
 
-const JWKS = createRemoteJWKSet(new URL(`http://localhost:3000/api/auth/jwks`));
+const JWKS = createRemoteJWKSet(
+  new URL(`${process.env.CLIENT_URL}/api/auth/jwks`),
+);
 
 // Connect to MongoDB
 const client = new MongoClient(uri, {
@@ -50,14 +52,14 @@ const verifyToken = async (req, res, next) => {
   } catch (error) {
     return res.status(401).json({ message: "Invalid token" });
   }
-  console.log("Authorization Header:", token);
+  // console.log("Authorization Header:", token);
 };
 
 // Start the server
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const db = client.db("wonderlust");
     const destinationCollection = db.collection("destinations");
@@ -92,7 +94,7 @@ async function run() {
     });
 
     // update a destination by id in the collection
-    app.patch("/destinations/:id", async (req, res) => {
+    app.patch("/destinations/:id", verifyToken, async (req, res) => {
       try {
         const { id } = req.params;
         const updatedDestination = req.body;
@@ -111,7 +113,7 @@ async function run() {
     });
 
     // insert a new destination into the collection
-    app.post("/destinations", async (req, res) => {
+    app.post("/destinations", verifyToken, async (req, res) => {
       try {
         const destination = req.body;
         const result = await destinationCollection.insertOne(destination);
@@ -123,7 +125,7 @@ async function run() {
     });
 
     // delete a destination by id from the collection
-    app.delete("/destinations/:id", async (req, res) => {
+    app.delete("/destinations/:id", verifyToken, async (req, res) => {
       try {
         const { id } = req.params;
         const result = await destinationCollection.deleteOne({
@@ -140,7 +142,7 @@ async function run() {
     });
 
     // insert a new booking into the collection
-    app.post("/bookings", async (req, res) => {
+    app.post("/bookings", verifyToken, async (req, res) => {
       try {
         const booking = req.body;
         const result = await bookingCollection.insertOne(booking);
@@ -152,7 +154,7 @@ async function run() {
     });
 
     // get all bookings from the collection
-    app.get("/bookings/:userId", async (req, res) => {
+    app.get("/bookings/:userId", verifyToken, async (req, res) => {
       try {
         const { userId } = req.params;
         const bookings = await bookingCollection
@@ -171,7 +173,7 @@ async function run() {
 
     // cancel or delete a booking by id from the collection
 
-    app.delete("/bookings/:id", async (req, res) => {
+    app.delete("/bookings/:id", verifyToken, async (req, res) => {
       try {
         const { id } = req.params;
         const result = await bookingCollection.deleteOne({
