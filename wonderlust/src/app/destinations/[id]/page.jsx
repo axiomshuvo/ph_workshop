@@ -1,14 +1,25 @@
 import BookingCard from "@/components/BookingCard";
 import { DeleteDestination } from "@/components/DeleteDestination";
 import { EditModal } from "@/components/EditModal";
+import { auth } from "@/lib/auth";
 import { Card } from "@heroui/react";
+import { headers } from "next/headers";
 import Image from "next/image";
 
 export default async function SingleDestinationDetails({ params }) {
   const { id } = await params;
-  console.log("SingleDestinationDetails id:", id);
+  // console.log("SingleDestinationDetails id:", id);
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
-  const res = await fetch(`http://localhost:5001/destinations/${id}`);
+  console.log("Token in SingleDestinationDetails:", token);
+
+  const res = await fetch(`http://localhost:5001/destinations/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`, // Include the token in the Authorization header
+    },
+  });
   const destination = await res.json();
   //console.log("Fetched Destination:", destination);
 

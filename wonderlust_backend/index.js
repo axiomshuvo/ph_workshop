@@ -9,11 +9,16 @@ app.use(cors());
 app.use(express.json());
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const { createRemoteJWKSet, jwtVerify } = require("jose-cjs");
 const uri = process.env.MONGODB_URI;
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
+
+// jwt keyset
+
+const JWKS = createRemoteJWKSet(new URL(`http://localhost:3000/api/auth/jwks`));
 
 // Connect to MongoDB
 const client = new MongoClient(uri, {
@@ -23,6 +28,30 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
+// middleware to verify the token
+// This middleware checks for the presence of an authorization header and extracts the token from it.
+// If the header or token is missing, it responds with a 401 Unauthorized status.
+// Otherwise, it logs the token and calls next() to proceed to the next middleware or route handler.
+
+const verifyToken = async (req, res, next) => {
+  const authHeader = req?.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({ message: "Authorization header missing" });
+  }
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) {
+    return res.status(401).json({ message: "Token missing" });
+  }
+
+  try {
+    const { payload } = await jwtVerify(token, JWKS);
+    console.log("Token Payload:", payload);
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+  console.log("Authorization Header:", token);
+};
 
 // Start the server
 async function run() {
@@ -45,7 +74,8 @@ async function run() {
     });
 
     // get a single destination by id from the collection
-    app.get("/destinations/:id", async (req, res) => {
+    // middleware to check if the user is logged in before accessing the destination
+    app.get("/destinations/:id", verifyToken, async (req, res) => {
       try {
         const { id } = req.params;
         const destination = await destinationCollection.findOne({

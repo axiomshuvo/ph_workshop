@@ -1,0 +1,2 @@
+- Prefers technical explanations delivered in Romanized Bangla (Banglish — Bengali written with English/Latin alphabet) rather than Bengali Unicode script, because Bengali fonts don't render properly in their terminal/IDE. Confidence: 0.3
+- Actively prefers proper Unicode Bengali (Bengali script) font support over Banglish workaround — when a font rendering issue exists, wants it fixed rather than switching to Banglish permanently. Confidence: 0.7
